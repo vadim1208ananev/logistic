@@ -1,0 +1,139 @@
+@import "libs";
+@import "vars";
+@import "mixins";
+@import "fonts";
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+}
+
+body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: #0C263F;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+
+    &.fixed {
+        overflow: hidden;
+    }
+}
+
+main,
+article,
+aside,
+details,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+main {
+    flex: 1;
+}
+
+figure,
+blockquote {
+    margin: 0;
+}
+
+picture {
+    display: block;
+}
+
+img {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 48px;
+}
+
+p {
+    margin: 0 0 30px;
+}
+
+a {
+    text-decoration: none;
+    color: #E78200;
+    transition: color .3s ease;
+}
+
+a[href*="mailto:"],
+a[href*="tel:"] {
+    word-wrap: break-word;
+}
+
+input,
+textarea,
+select,
+button {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    outline: none;
+}
+
+input,
+textarea {
+    box-shadow: none;
+}
+
+input, button {
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
+}
+
+button {
+    cursor: pointer;
+}
+
+textarea {
+    resize: none;
+}
+
+.container {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 24px;
+
+    @include min(tablet) {
+        padding: 0 50px;
+    }
+}
+
+@import "content/app";

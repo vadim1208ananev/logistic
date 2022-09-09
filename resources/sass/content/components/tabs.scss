@@ -1,0 +1,14 @@
+.tabs {
+
+    &__block {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    &__content {
+        padding-top: 40px;
+    }
+}

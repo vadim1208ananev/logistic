@@ -1,0 +1,91 @@
+.air-datepicker {
+    width: auto;
+    min-width: 200px;
+    padding: 24px;
+    border: none;
+    border-radius: 16px;
+    box-shadow: none;
+    background-color: #FFF4E5;
+    color: #0C263F;
+
+    &.-is-mobile- {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: initial;
+        max-width: calc(100% - 20px);
+    }
+}
+
+.air-datepicker-nav {
+    box-sizing: border-box;
+    min-height: initial;
+    height: 40px;
+    padding: 8px;
+    border-bottom: none;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.air-datepicker-nav--action {
+
+    &:hover {
+        background-color: transparent;
+    }
+
+    path {
+        stroke: #E78200;
+        stroke-width: 1.5px;
+    }
+}
+
+.air-datepicker-nav--title {
+    font-size: 12px;
+    line-height: 1.33333;
+    color: inherit;
+}
+
+.air-datepicker--content {
+    padding: 0;
+}
+
+.air-datepicker-body--day-names {
+    height: 40px;
+    margin: 0;
+}
+
+.air-datepicker-body--day-name {
+    text-transform: none;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 2;
+    color: inherit;
+}
+
+.air-datepicker-body--cells.-days- {
+    grid-template-columns: repeat(7, 40px);
+    grid-auto-rows: 40px;
+}
+
+.air-datepicker-cell {
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.33333;
+    color: inherit;
+    transition: background-color .15s ease, color .15s ease;
+
+    &:hover {
+        background-color: #E78200;
+        color: #fff;
+    }
+}
+
+.air-datepicker-cell.-selected-,
+.air-datepicker-cell.-selected-.-current-,
+.air-datepicker-cell.-selected-.-focus- {
+    background-color: #E78200;
+}
+
+.air-datepicker-cell.-current- {
+    color: #E78200;
+}

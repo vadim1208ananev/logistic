@@ -1,0 +1,203 @@
+.intro {
+    margin: 70px 0 130px;
+
+    @include min(laptop) {
+        margin-bottom: 227px;
+    }
+
+    &__container {
+        max-width: 1225px;
+    }
+
+    &__holder {
+
+        @include min(laptop) {
+            display: flex;
+            align-items: flex-start;
+            gap: 55px;
+        }
+    }
+
+    &__block {
+        margin-bottom: 90px;
+
+        @include min(laptop) {
+            flex: 1;
+            margin-bottom: 0;
+        }
+    }
+
+    &__img {
+        margin-bottom: 45px;
+        text-align: center;
+
+        @include min(tablet-s) {
+            margin-bottom: -20px;
+        }
+    }
+
+    &__subtitle {
+        display: block;
+        margin-bottom: 18px;
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.1875;
+        color: #909CAB;
+
+        @include min(tablet) {
+            margin-bottom: 8px;
+            font-size: 24px;
+            line-height: 1.5;
+        }
+    }
+
+    &__title {
+        margin-bottom: 17px;
+        text-transform: uppercase;
+        font-size: 36px;
+        line-height: 1.22;
+
+        @include min(tablet) {
+            margin-bottom: 36px;
+            font-size: 48px;
+            line-height: 1.17;
+        }
+    }
+
+    &__icon {
+        width: 22px;
+
+        @include min(tablet) {
+            width: 30px;
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &__tabs {
+        max-width: 460px;
+        margin: 0 auto;
+
+        @include min(laptop) {
+            width: 440px;
+            max-width: initial;
+            margin: initial;
+        }
+
+        @include min(laptop-l) {
+            width: 460px;
+        }
+
+        .form__flex {
+            margin-bottom: 40px;
+
+            @include max(mobile) {
+                margin-bottom: 14px;
+            }
+
+            .input {
+                width: calc(50% - 5px);
+
+                @include min(mobile) {
+                    width: calc(50% - 15px);
+                }
+
+                @include min(laptop-l) {
+                    width: calc(50% - 22px);
+                }
+            }
+        }
+
+        .input {
+
+            &__holder {
+
+                &.active {
+
+                    label {
+
+                        @include max(mobile) {
+                            top: 6px;
+                        }
+                    }
+
+                    input {
+
+                        @include max(mobile) {
+                            padding: 18px 27px 4px 15px;
+                        }
+                    }
+                }
+
+                label {
+
+                    @include max(mobile) {
+                        font-size: 10px;
+                    }
+                }
+
+                button {
+
+                    @include max(mobile) {
+                        right: 3px;
+                    }
+                }
+
+                input {
+
+                    @include max(mobile) {
+                        padding: 11px 27px 11px 15px;
+                    }
+                }
+            }
+
+            &__text {
+
+                @include max(mobile) {
+                    margin-top: 4px;
+                    padding: 0 16px;
+                    font-size: 8px;
+                    line-height: 2;
+                    color: rgba(0, 0, 0, 0.4);
+                }
+            }
+        }
+
+        .select2-container .select2-selection--single .select2-selection__rendered {
+
+            @include max(mobile) {
+                padding: 14px 25px 14px 15px;
+                font-size: 10px;
+            }
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+
+            @include max(mobile) {
+                right: 0;
+            }
+        }
+
+        .select2-container--default .select2-search--dropdown .select2-search__field {
+
+            @include max(mobile) {
+                padding: 8px 14px;
+            }
+        }
+
+        .select2-results__option {
+
+            @include max(mobile) {
+                padding: 10px 15px;
+                font-size: 10px;
+            }
+        }
+
+        .form__submit {
+            margin-top: 40px;
+        }
+    }
+}
