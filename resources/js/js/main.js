@@ -11,7 +11,7 @@ import handleRoute from './modules/route';
 //import '../scss/main.scss';
 
 $(document).ready(() => {
-
+alert(123);
     handleNavigation();
     handleInput();
     handleSelect();

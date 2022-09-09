@@ -79,7 +79,7 @@
                                             <span class="input__text">Type of shipment</span>
                                         </div>
                                     </div>
-                                    <button type="submit" class="form__submit">QUOTE</button>
+                                    <button type="submit" class="form__submit">QUOTE1</button>
                                 </form>
                             </div>
                         </div>
