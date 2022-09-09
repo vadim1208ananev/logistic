@@ -16,6 +16,7 @@ class SiteController extends Controller
 {
     public function index(Request $request)
     {
+        //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
         $theme='new';
         $request->session()->forget('data');
         session()->save();
