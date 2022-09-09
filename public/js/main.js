@@ -11108,7 +11108,6 @@ __webpack_require__.r(__webpack_exports__);
  //import '../scss/main.scss';
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
-  alert(123);
   Object(_modules_navigation__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_modules_input__WEBPACK_IMPORTED_MODULE_3__["default"])();
   Object(_modules_select__WEBPACK_IMPORTED_MODULE_4__["default"])();
