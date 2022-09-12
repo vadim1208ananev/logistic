@@ -11098,6 +11098,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/tabs */ "./resources/js/js/modules/tabs.js");
 /* harmony import */ var _modules_datepicker__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/datepicker */ "./resources/js/js/modules/datepicker.js");
 /* harmony import */ var _modules_route__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/route */ "./resources/js/js/modules/route.js");
+/* harmony import */ var _modules_calculator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/calculator */ "./resources/js/js/modules/calculator.js");
+/* harmony import */ var _modules_file__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/file */ "./resources/js/js/modules/file.js");
+
+
 
 
 
@@ -11114,6 +11118,196 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_modules_datepicker__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_modules_route__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  Object(_modules_calculator__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  Object(_modules_file__WEBPACK_IMPORTED_MODULE_9__["default"])();
+  var weight_type = 'KG';
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.weight_type').html(weight_type);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('change', "input[name='weight_type']", function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).is(':checked')) {
+      weight_type = 'POUNDS';
+    } else {
+      weight_type = 'KG';
+    }
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.weight_type').html(weight_type);
+  });
+  var dimension_type = 'CM';
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.dimension_type').html(dimension_type);
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('change', "input[name='dimension_type']", function () {
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).is(':checked')) {
+      dimension_type = 'INCHES';
+    } else {
+      dimension_type = 'CM';
+    }
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.dimension_type').html(dimension_type);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('keyup', "input[name^='l'], input[name^='w'], input[name^='h']", function () {
+    var const_coeffiient = 6000;
+    var $el = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+    var $unit_num = $el.parent().parent().parent();
+
+    if ($unit_num.find("input[name^='l']").val() && $unit_num.find("input[name^='w']").val() && $unit_num.find("input[name^='h']").val()) {
+      var l = $unit_num.find("input[name^='l']").val();
+      var w = $unit_num.find("input[name^='w']").val();
+      var h = $unit_num.find("input[name^='h']").val();
+      var total_weight = l * w * h / const_coeffiient;
+      $unit_num.find("input[name^='total_weight_units']").val(total_weight.toFixed(2));
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/js/modules/calculator.js":
+/*!***********************************************!*\
+  !*** ./resources/js/js/modules/calculator.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  // On Incoterms button clicks
+  var incoterms = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#incoterms');
+  var pickupAddress = jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[name=pickup_address]');
+  var finalDestinationAddress = jquery__WEBPACK_IMPORTED_MODULE_0___default()('input[name=final_destination_address]');
+
+  if (incoterms.length && pickupAddress.length && finalDestinationAddress.length) {
+    incoterms.change(function () {
+      var el = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+
+      if (el === 'EXW') {
+        pickupAddress.prop('required', true).parents('.input').removeClass('hidden');
+        finalDestinationAddress.prop('required', true).parents('.input').removeClass('hidden');
+      } else {
+        pickupAddress.prop('required', false).parents('.input').addClass('hidden');
+        finalDestinationAddress.prop('required', false).parents('.input').addClass('hidden');
+      }
+    });
+  } // Add dynamic containers fields
+
+
+  if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('.calculator__buttons').length) {
+    var totalFields = function totalFields(elem) {
+      return jquery__WEBPACK_IMPORTED_MODULE_0___default()(elem).length;
+    };
+
+    var addNewContainer = function addNewContainer() {
+      var container = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#container-1");
+      if (!container.length) return;
+      containerCount = totalFields(containerClassName) + 1;
+      containerField = container.clone();
+      containerField.prop("id", "container-" + containerCount);
+      containerField.find('.calculator__container-title').text("Container#" + containerCount);
+      containerField.find('#container-size-1').prop("id", "container-size-" + containerCount).prev('label').prop("for", "container-size-" + containerCount);
+      containerField.find('#container-weight-1').prop("id", "container-weight-" + containerCount).prev('label').prop("for", "container-weight-" + containerCount);
+      containerField.find("input").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(containerClassName + ":last").after(jquery__WEBPACK_IMPORTED_MODULE_0___default()(containerField));
+    };
+
+    var addNewUnit = function addNewUnit() {
+      var unit = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#units-1");
+      if (!unit.length) return;
+      unitCount = totalFields(unitClassName) + 1;
+      unitField = unit.clone();
+      unitField.prop("id", "units-" + unitCount);
+      unitField.find('.calculator__unit-title').text("Pallet#" + unitCount);
+      unitField.find("#length_1").prop("id", "length_" + unitCount).prev('label').prop("for", "length_" + unitCount);
+      unitField.find("#width_1").prop("id", "width_" + unitCount).prev('label').prop("for", "width_" + unitCount);
+      unitField.find("#height_1").prop("id", "height_" + unitCount).prev('label').prop("for", "height_" + unitCount);
+      unitField.find("#total_weight_units_1").prop("id", "total_weight_units_" + unitCount).prev('label').prop("for", "total_weight_units_" + unitCount);
+      unitField.find("#gross_weight_1").prop("id", "gross_weight_" + unitCount).prev('label').prop("for", "gross_weight_" + unitCount);
+      unitField.find("input").val("");
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(unitClassName + ":last").after(jquery__WEBPACK_IMPORTED_MODULE_0___default()(unitField));
+    };
+
+    var removeLastField = function removeLastField(className) {
+      if (totalFields(className) > 1) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(className + ":last").remove();
+      }
+    };
+
+    var enableButtonRemove = function enableButtonRemove(className, buttonRemove) {
+      if (totalFields(className) === 2) {
+        buttonRemove.removeAttr("disabled");
+      }
+    };
+
+    var disableButtonRemove = function disableButtonRemove(className, buttonRemove) {
+      if (totalFields(className) === 1) {
+        buttonRemove.attr("disabled", "disabled");
+      }
+    };
+
+    var disableButtonAdd = function disableButtonAdd(className, buttonAdd) {
+      if (totalFields(className) === maxFields) {
+        buttonAdd.attr("disabled", "disabled");
+      }
+    };
+
+    var enableButtonAdd = function enableButtonAdd(className, buttonAdd) {
+      if (totalFields(className) === maxFields - 1) {
+        buttonAdd.removeAttr("disabled");
+      }
+    };
+
+    var initDynamicButtons = function initDynamicButtons(add, remove, className, fn) {
+      if (add.length && remove.length) {
+        add.on('click', function () {
+          fn();
+          enableButtonRemove(className, remove);
+          disableButtonAdd(className, jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+        });
+        remove.on('click', function () {
+          removeLastField(className);
+          disableButtonRemove(className, jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
+          enableButtonAdd(className, add);
+        });
+      }
+    };
+
+    var maxFields = 50;
+    var addContainerBtn = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#add_container");
+    var removeContainerBtn = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#remove_container");
+    var containerClassName = ".calculator__container";
+    var containerCount = 0;
+    var containerField = "";
+    var addUnitBtn = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#add-button");
+    var removeUnitBtn = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#remove-button");
+    var unitClassName = ".calculator__unit";
+    var unitCount = 0;
+    var unitField = "";
+    initDynamicButtons(addContainerBtn, removeContainerBtn, containerClassName, addNewContainer);
+    initDynamicButtons(addUnitBtn, removeUnitBtn, unitClassName, addNewUnit);
+  } // Dynamic shipment
+
+
+  var calculatorRadio = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.calculator__radio');
+  var shipmentBlock = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#shipment');
+  var unitsBlock = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#units');
+
+  if (calculatorRadio.length) {
+    calculatorRadio.on('change', 'input', function () {
+      var value = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
+
+      if (value === 'units') {
+        unitsBlock.removeClass('hidden');
+        unitsBlock.find('.required').prop('required', true);
+        shipmentBlock.addClass('hidden');
+        shipmentBlock.find('.required').prop('required', false);
+      } else {
+        shipmentBlock.removeClass('hidden');
+        shipmentBlock.find('.required').prop('required', true);
+        unitsBlock.addClass('hidden');
+        unitsBlock.find('.required').prop('required', false);
+      }
+    });
+  }
 });
 
 /***/ }),
@@ -11144,7 +11338,6 @@ __webpack_require__.r(__webpack_exports__);
         locale: air_datepicker_locale_en__WEBPACK_IMPORTED_MODULE_1___default.a,
         selectedDates: [new Date()],
         autoClose: true,
-        dateFormat: 'dd-MM-yyyy',
         position: function position(_ref) {
           var $datepicker = _ref.$datepicker,
               $target = _ref.$target,
@@ -11159,7 +11352,8 @@ __webpack_require__.r(__webpack_exports__);
         },
         navTitles: {
           days: 'MMM yyyy'
-        }
+        },
+        dateFormat: 'dd-MM-yyyy'
       });
     };
 
@@ -11170,10 +11364,10 @@ __webpack_require__.r(__webpack_exports__);
         selectedDates: [new Date()],
         autoClose: true,
         isMobile: true,
-        dateFormat: 'dd-MM-yyyy',
         navTitles: {
           days: 'MMM yyyy'
-        }
+        },
+        dateFormat: 'dd-MM-yyyy'
       });
     };
 
@@ -11187,6 +11381,29 @@ __webpack_require__.r(__webpack_exports__);
 
     handleWindowResizing();
     window.addEventListener('resize', handleWindowResizing);
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/js/modules/file.js":
+/*!*****************************************!*\
+  !*** ./resources/js/js/modules/file.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var inputs = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.file-input');
+  if (!inputs.length) return;
+  inputs.on('change', 'input', function () {
+    var fileName = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).siblings('span');
+    fileName.text(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this)[0].files[0].name);
   });
 });
 

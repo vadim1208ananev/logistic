@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Session;
 class LoginController extends Controller
 {
+    public $theme='new';
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -43,15 +44,15 @@ class LoginController extends Controller
     }
     protected function authenticated(Request $request, $user)
     {
-        
+
         if($user['email_verified_at']==NULL && $user['role']=="vendor")
-        { 
-        
+        {
+
             $this->middleware('guest')->except('logout');
             Session::flush();
             return redirect(route('stop'));
-            
-            
+
+
         }
         else{
             if(Storage::disk('public')->exists('store_pending_form.json'))
@@ -61,12 +62,21 @@ class LoginController extends Controller
             if(isset($fileContents->incoterms) != null)
             {
                 return redirect(route('store_pending_form'));
-            } 
+            }
         }
         }
-        
+
     }
-    
+    public function showLoginForm()
+    {
+        if($this->theme=='new')
+        {
+            return view('new.auth.login');
+        }
+        return view('auth.login');
+    }
+
+
     protected function redirectTo()
     {
         if(Auth::user()->role == 'admin')

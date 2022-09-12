@@ -14,18 +14,19 @@ use Illuminate\Support\Facades\Mail;
 
 class SiteController extends Controller
 {
+    public $theme='new';
     public function index(Request $request)
     {
 
         //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
-        $theme='new';
+
         $request->session()->forget('data');
         session()->save();
         $r=$request->session()->get('data');
 
         $data['page_title'] = 'Homepage | LogistiQuote';
         $data['page_name'] = 'homepage';
-        return view($theme.'.frontend.index', $data);
+        return view($this->theme.'.frontend.index', $data);
     }
 
     public function contact_us()
@@ -88,7 +89,7 @@ class SiteController extends Controller
       // .. $fileContents = Storage::disk('public')->get('store_pending_form.json');
       // .. $fileContents = json_decode($fileContents);
        $session_contents=session()->get('data');
-
+    //   dd($session_contents);
        //.. if($fileContents->ready_to_load_date == null)
         if($session_contents['ready_to_load_date'] == null)
         {
@@ -97,15 +98,16 @@ class SiteController extends Controller
         $data['page_title'] = 'Request a quote | LogistiQuote';
         $data['page_name'] = 'get_quote_step2';
         $data['const_coeffiient']=(int)config('app.const');
+
        //.. if($fileContents->type == 'lcl' || $fileContents->transportation_type == 'air')
        if($session_contents['type'] == 'lcl' || $session_contents['transportation_type'] == 'air')
         {
-            return view('frontend.get_quote_lcl', $data);
+            return view($this->theme.'.frontend.get_quote_lcl', $data);
         }
        //.. else if($fileContents->transportation_type == 'sea' && $fileContents->type == 'fcl')
         else if($session_contents['transportation_type'] == 'sea' && $session_contents['type'] == 'fcl')
         {
-            return view('frontend.get_quote_fcl', $data);
+            return view($this->theme.'.frontend.get_quote_fcl', $data);
         }
         else
         {
@@ -114,7 +116,7 @@ class SiteController extends Controller
     }
     public function form_quote_step2(Request $request)
     {
-        if($request->file('attachment'))
+          if($request->file('attachment'))
         {
             $file_name = rand().'.'.$request->file('attachment')->getClientOriginalExtension();
             $request->merge(['attachment_file' => $file_name]);
@@ -130,7 +132,7 @@ class SiteController extends Controller
             'data' =>$merge_session
         ]);
         session()->save();
-       // dd(session()->get('data'));
+      //  dd(session()->get('data'));
      //..   $isDelete = Storage::disk('public')->delete('store_pending_form.json');
     //..    Storage::disk('public')->put('store_pending_form.json', json_encode($merge));
 

@@ -1,7 +1,7 @@
 <header class="header">
     <div class="header__container container">
         <div class="header__holder">
-            <a href="#" class="header__logo">
+            <a href="{{ route('index') }}" class="header__logo">
                 <img src="{{ asset('public/frontend/img/logo.svg') }}" alt="LogistiQuote logo">
             </a>
             <button type="button" class="header__burger">
