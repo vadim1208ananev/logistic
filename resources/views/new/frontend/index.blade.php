@@ -131,5 +131,80 @@
             </div>
         </div>
     </section>
+        <section class="benefits">
+            <div class="benefits__container container">
+                <h2 class="benefits__title">Why LogistiQuote</h2>
+                <div class="benefits__holder">
+                    <div class="benefits__list">
+                        <article class="benefits__item">
+                            <h2 class="benefits__item-title">
+                                <img src="{{asset('public/frontend/img/box.svg')}}" alt="Box">
+                                Benefit 1
+                            </h2>
+                            <p class="benefits__item-text">Customs classifier and freight forwarding for logistics facilities.</p>
+                        </article>
+                        <article class="benefits__item">
+                            <h2 class="benefits__item-title">
+                                <img src="{{asset('public/frontend/img/box.svg')}}" alt="Box">
+                                Benefit 2
+                            </h2>
+                            <p class="benefits__item-text">Wide coverage throughout Israel.</p>
+                        </article>
+                        <article class="benefits__item">
+                            <h2 class="benefits__item-title">
+                                <img src="{{asset('public/frontend/img/box-2.svg')}}" alt="Box">
+                                Benefit 3
+                            </h2>
+                            <p class="benefits__item-text">Dedicated personnel available 24/7.</p>
+                        </article>
+                        <article class="benefits__item">
+                            <h2 class="benefits__item-title">
+                                <img src="{{asset('public/frontend/img/box.svg')}}" alt="Box">
+                                Benefit 4
+                            </h2>
+                            <p class="benefits__item-text">1 STOP SHOP for supply chain.</p>
+                        </article>
+                        <article class="benefits__item">
+                            <h2 class="benefits__item-title">
+                                <img src="{{asset('public/frontend/img/box.svg')}}" alt="Box">
+                                Benefit 5
+                            </h2>
+                            <p class="benefits__item-text"> Our recognition with the Israel logistics.</p>
+                        </article>
+                        <article class="benefits__item">
+                            <h2 class="benefits__item-title">
+                                <img src="{{asset('public/frontend/img/box.svg')}}" alt="Box">
+                                Benefit 6
+                            </h2>
+                            <p class="benefits__item-text">Our solutions.</p>
+                        </article>
+                        <article class="benefits__item">
+                            <h2 class="benefits__item-title">
+                                <img src="{{asset('public/frontend/img/box-3.svg')}}" alt="Box">
+                                Benefit 7
+                            </h2>
+                            <p class="benefits__item-text">Our industry specific professional team.</p>
+                        </article>
+                        <article class="benefits__item">
+                            <h2 class="benefits__item-title">
+                                <img src="{{asset('public/frontend/img/box.svg')}}" alt="Box">
+                                Benefit 8
+                            </h2>
+                            <p class="benefits__item-text"> Excellent relationships with forwarders, and governmental ministries.</p>
+                        </article>
+                        <article class="benefits__item">
+                            <h2 class="benefits__item-title">
+                                <img src="{{asset('public/frontend/img/box-4.svg')}}" alt="Box">
+                                Benefit 9
+                            </h2>
+                            <p class="benefits__item-text">Our knowledge In the project planning logistics solutions providers and for infrastructure.</p>
+                        </article>
+                    </div>
+                    <figure class="benefits__img">
+                        <img src="{{asset('public/frontend/img/benefits.svg')}}" alt="Benefits">
+                    </figure>
+                </div>
+            </div>
+        </section>
 </main>
 @endsection
