@@ -78,8 +78,8 @@
                                 @guest
                                 <a href="{{ route('login') }}" class="main-menu__link">Sign in</a>
                                   @else
-                                    <a href="javascript:;" class="main-menu__link">{{ Auth::user()->name }}</a>
-                                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-closer">
+                                    <a href="javascript:;"  class="main-menu__link">{{ Auth::user()->name }}</a>
+                                    <ul style="display: none;" class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-closer">
                                         <div class="country-lang-pointer"></div>
                                         <li class="clearfix dropdown-header dropdown-stop">
                                             <div class="user-mini-pic">

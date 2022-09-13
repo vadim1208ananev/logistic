@@ -125,7 +125,9 @@
                     @endif
                 </div>
                 <div class="calculator__content">
-                    <form action="#" class="calculator__form form" name="lcl-delivery">
+
+                        <form action="{{ route('form_quote_step2') }}" method="POST" class="calculator__form form" name="lcl-delivery" enctype="multipart/form-data">
+                            @csrf
                         <fieldset class="calculator__description form__fieldset">
                             <legend class="form__legend">DESCRIPTION OF GOODS</legend>
                             <div class="form__flex">
@@ -159,7 +161,7 @@
                                 <div class="input">
                                     <div class="input__holder">
                                         <label for="value-of-goods">Value of goods (USD)</label>
-                                        <input type="number" id="value-of-goods" title="Value of goods" name="value_of_goods" autocomplete="off">
+                                        <input type="number" id="value-of-goods" title="Value of goods" name="value_of_goods" autocomplete="off" required>
                                         <button type="button" aria-label="Close"></button>
                                     </div>
                                     <span class="input__text">VALUE OF THE GOODS IN USD</span>
@@ -197,7 +199,7 @@
                                         <input type="checkbox" id="dimension-type" name="dimension_type" value="inches">
                                         <label for="dimension-type">
                                             <span>Cm</span>
-                                            <span class="checked">Inch</span>
+                                            <span class="checked">Inches</span>
                                         </label>
                                     </div>
                                 </div>
@@ -207,7 +209,7 @@
                                         <input type="checkbox" id="weight-type" name="weight_type" value="pounds">
                                         <label for="weight-type">
                                             <span>Kg</span>
-                                            <span class="checked">Ib</span>
+                                            <span class="checked">Pounds</span>
                                         </label>
                                     </div>
                                 </div>
@@ -215,13 +217,16 @@
                         </fieldset>
                         <fieldset class="calculator__calculations form__fieldset">
                             <legend class="form__legend">Shipment calculations</legend>
-                            <div class="calculator__radio">
+                            <div class="calculator__radio" id="trig">
+                                @if(session('transportation_type') != 'air')
                                 <div class="calculator__radio-item">
                                     <input type="radio" id='calculate-by-shipment' name="calculate_by" value="shipment" checked>
                                     <label for="calculate-by-shipment">Calculate by total shipment</label>
                                 </div>
+
+                                @endif
                                 <div class="calculator__radio-item">
-                                    <input type="radio" id='calculate-by-units' name="calculate_by" value="units">
+                                    <input type="radio" id='calculate-by-units' name="calculate_by" value="units" >
                                     <label for="calculate-by-units">Calculate by units</label>
                                 </div>
                             </div>
@@ -229,21 +234,21 @@
                                 <div class="calculator__shipment-item">
                                     <div class="input">
                                         <label for="quantity" class="sr-only">Number of Pieces (Quantity)</label>
-                                        <input type="number" id="quantity" class="required" title="Quantity" name="quantity" placeholder="0" autocomplete="off" required>
+                                        <input type="number" id="quantity" class="required" title="Quantity" name="quantity" placeholder="0" autocomplete="off" >
                                     </div>
                                     <div class="accent-btn">Pcs</div>
                                 </div>
                                 <div class="calculator__shipment-item">
                                     <div class="input">
                                         <label for="total-weight" class="sr-only">Gross Weight</label>
-                                        <input type="number" id="total-weight" class="required" title="Gross Weight" name="total_weight" placeholder="0" autocomplete="off" required>
+                                        <input type="number" id="total-weight" class="required" title="Gross Weight" name="total_weight" placeholder="0" autocomplete="off" >
                                     </div>
-                                    <div class="accent-btn">Pounds</div>
+                                    <div class="accent-btn"><span class="weight_type">Kg</span></div>
                                 </div>
                             </div>
                             <div class="calculator__units hidden" id="units">
                                 <figure class="calculator__units-img">
-                                    <img src="img/units.svg" alt="Units">
+                                    <img src="{{asset('public/frontend/img/units.svg')}}" alt="Units">
                                 </figure>
                                 <div class="calculator__buttons tabs__titles titles">
                                     <button type="button" id="add-button" class="calculator__buttons-item titles__item active">+</button>
@@ -256,7 +261,7 @@
                                             <div class="input">
                                                 <label for="length_1" class="sr-only">Length</label>
                                                 <input type="number" title="Dimensions" name="l[]" placeholder="L" id="length_1" class="required" autocomplete="off">
-                                                <span class="input__text">DIMENSIONS (CM)</span>
+                                                <span class="input__text">DIMENSIONS (<span class="dimension_type">CM</span>)</span>
                                             </div>
                                             <div class="input">
                                                 <label for="width_1" class="sr-only">Width</label>
@@ -269,14 +274,14 @@
                                         </div>
                                         <div class="form__flex">
                                             <div class="input">
-                                                <label for="total_weight_units_1" class="sr-only">Volumetric weight (kg)</label>
+                                                <label for="total_weight_units_1" class="sr-only">Volumetric weight (<span class="weight_type">Kg</span>)</label>
                                                 <input type="number" title="Gross Weight" name="total_weight_units[]" id="total_weight_units_1" autocomplete="off" disabled>
-                                                <span class="input__text">VOLUMETRIC WEIGHT (Kg)</span>
+                                                <span class="input__text">VOLUMETRIC WEIGHT (<span class="weight_type">Kg</span>)</span>
                                             </div>
                                             <div class="input">
                                                 <label for="gross_weight_1" class="sr-only">Gross weight (kg)</label>
                                                 <input type="number" title="Weight" name="gross_weight[]" placeholder="0" id="gross_weight_1" class="required" autocomplete="off">
-                                                <span class="input__text">GROSS WEIGHT (Kg)</span>
+                                                <span class="input__text">GROSS WEIGHT (<span class="weight_type">Kg</span>)</span>
                                             </div>
                                         </div>
                                     </div>
@@ -327,4 +332,18 @@
             </div>
         </div>
     </main>
+
+    @if(session('transportation_type') == 'air')
+    <script>
+
+        var link = document.getElementById('calculate-by-units');
+            link.click();
+        var unit_block=document.getElementById('units');
+        unit_block.classList.remove('hidden')
+       var shipment_block=document.getElementById('shipment');
+      shipment_block.classList.add('hidden')
+
+    </script>
+    @endif
+
     @endsection

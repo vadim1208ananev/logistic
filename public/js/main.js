@@ -11155,6 +11155,13 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       $unit_num.find("input[name^='total_weight_units']").val(total_weight.toFixed(2));
     }
   });
+  /*  function initialize() {
+        var input = document.getElementById('shipment-origin');
+        new google.maps.places.Autocomplete(input);
+        var input1 = document.getElementById('shipment-destination');
+        new google.maps.places.Autocomplete(input1);
+    }
+     google.maps.event.addDomListener(window, 'load', initialize)*/
 });
 
 /***/ }),
