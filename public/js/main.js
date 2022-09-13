@@ -11200,6 +11200,7 @@ __webpack_require__.r(__webpack_exports__);
     var addNewContainer = function addNewContainer() {
       var container = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#container-1");
       if (!container.length) return;
+      container.find('select').select2('destroy');
       containerCount = totalFields(containerClassName) + 1;
       containerField = container.clone();
       containerField.prop("id", "container-" + containerCount);
@@ -11208,6 +11209,15 @@ __webpack_require__.r(__webpack_exports__);
       containerField.find('#container-weight-1').prop("id", "container-weight-" + containerCount).prev('label').prop("for", "container-weight-" + containerCount);
       containerField.find("input").val("");
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(containerClassName + ":last").after(jquery__WEBPACK_IMPORTED_MODULE_0___default()(containerField));
+      var selects = container.parents('.calculator__containers').find(jquery__WEBPACK_IMPORTED_MODULE_0___default()('select'));
+      selects.each(function (i, select) {
+        if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(select).hasClass("select2-hidden-accessible")) {
+          var parent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(select).parent();
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(select).select2({
+            dropdownParent: parent
+          });
+        }
+      });
     };
 
     var addNewUnit = function addNewUnit() {

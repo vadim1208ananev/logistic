@@ -15,7 +15,6 @@ export default () => {
                 locale: localeEn,
                 selectedDates: [new Date()],
                 autoClose: true,
-                dateFormat: 'dd-MM-yyyy',
                 position({$datepicker, $target, $pointer}) {
                     $pointer.style.display = 'none';
                     let coords = $target.getBoundingClientRect(),
@@ -29,7 +28,8 @@ export default () => {
                 },
                 navTitles: {
                     days: 'MMM yyyy'
-                }
+                },
+                dateFormat: 'dd-MM-yyyy'
             });
         }
 
@@ -40,10 +40,10 @@ export default () => {
                 selectedDates: [new Date()],
                 autoClose: true,
                 isMobile: true,
-                dateFormat: 'dd-MM-yyyy',
                 navTitles: {
                     days: 'MMM yyyy'
-                }
+                },
+                dateFormat: 'dd-MM-yyyy'
             });
         }
 

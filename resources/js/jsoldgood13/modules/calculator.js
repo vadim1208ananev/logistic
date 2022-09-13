@@ -44,8 +44,6 @@ export default () => {
             const container = $("#container-1");
             if (!container.length) return;
 
-            container.find('select').select2('destroy');
-
             containerCount = totalFields(containerClassName) + 1;
             containerField = container.clone();
             containerField.prop("id", "container-" + containerCount);
@@ -54,16 +52,6 @@ export default () => {
             containerField.find('#container-weight-1').prop("id", "container-weight-" + containerCount).prev('label').prop("for", "container-weight-" + containerCount);
             containerField.find("input").val("");
             $(containerClassName + ":last").after($(containerField));
-
-            const selects = container.parents('.calculator__containers').find($('select'));
-            selects.each((i, select) => {
-                if (!$(select).hasClass("select2-hidden-accessible")) {
-                    const parent = $(select).parent();
-                    $(select).select2({
-                        dropdownParent: parent
-                    });
-                }
-            });
         }
 
         function addNewUnit() {

@@ -75,7 +75,55 @@
                                 <a href="https://chat.google.com/u/0/api/get_attachment_url?url_type=DOWNLOAD_URL&attachment_token=AD3oLg2hZsRf6eLzoMZhiuOO8JRwGZdoihXs7aP2MV82YbUEFYf%2BPZZBkPRfI3I2nDamlfZvE6W%2BHQf27DJiPSQZq4jrNxaDveZXA9nbickjMn6sbpdJMnP07NQePnbMStVhQvVVlGs2aGYIbzMG8iVztJxqYHUUPJ3%2Bj7MRggLezG7i0a4IZypJx5wKtKPU1lyqt2VT61EHagCA4scjThRi7hCc31Vk5OR6xJRRG5ILc%2BfRykF%2F0UY2YJZi%2Biw9sJO%2F9gIvp%2BDvpkukgQrhtk%2FoFBv8s4KY89I231UKB765hiLljHbSdQMx9uy82W%2BliT7cU8P3eI8uLTssh%2FqDGHfB2snr4VtQu8jQEeeMUkh65W%2BovGhuxV7dfFbYhynkJZK7KTdDkVgGfE%2B%2FNwjG6SV1%2BORWgEBJ1jYWTJM%2BLeHFigyKq3F2%2BFqPlNFfSGVMW3T%2FpvA0Rb6R1zULxkkffwjT2SoNzIPi%2BXBiKtMKOKOdD4TJLfKWvjbuBTXdIyeiJs3VqgyoNd8pphCn1qH6LVv5RXrJVJZTE4%2FN0A%3D%3D&content_type=application%2Fvnd.openxmlformats-officedocument.wordprocessingml.document&auto=true" target="_blank" class="main-menu__link">Terms</a>
                             </li>
                             <li class="main-menu__item">
+                                @guest
                                 <a href="{{ route('login') }}" class="main-menu__link">Sign in</a>
+                                  @else
+                                    <a href="javascript:;" class="main-menu__link">{{ Auth::user()->name }}</a>
+                                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-closer">
+                                        <div class="country-lang-pointer"></div>
+                                        <li class="clearfix dropdown-header dropdown-stop">
+                                            <div class="user-mini-pic">
+                                                <?php
+                                                if(Auth::user()->image){?>
+                                                <img class="img-profile rounded-circle"
+                                                     src="{{ asset('public/images').'/'.Auth::user()->image }}">
+                                                <?php
+                                                }else{?>
+                                                <img class="img-profile rounded-circle"
+                                                     src="{{ asset('public/uploads/profile_pic/avatar.png') }}">
+                                                @php
+                                                    }
+                                                @endphp
+                                            </div>
+                                            <div class="user-info">
+                                                <div class="user-name"> {{ Auth::user()->name }} </div>
+                                                @if (Auth::user()->role=="user")
+                                                    <div class="user-company">{{ Auth::user()->role }}</div>
+                                                @endif
+                                                @if (Auth::user()->role=="vendor")
+                                                    <div class="user-company">Forwarder</div>
+                                                @endif
+                                                <div class="user-id">Profile ID: {{ Auth::user()->id }}</div>
+                                            </div>
+                                        </li>
+
+                                        <li> <a href="{{ route('user') }}"> <i class="fad fa-tachometer-alt-fast"></i> Dashboard </a> </li>
+                                        <!-- <li> <a href="/user/inbox"> <i class="fad fa-inbox-in"></i> Inbox </a> </li> -->
+                                        <!-- <li> <a href="/user/profile#profile-about"> <i class="fas fa-cog"></i> Settings </a> -->
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                <i class="fad fa-sign-out"></i> {{ __('Logout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </li>
+                                    </ul>
+                                @endguest
                             </li>
                         </ul>
                     </nav>

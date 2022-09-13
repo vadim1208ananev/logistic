@@ -6,7 +6,6 @@ export default () => {
     if (!routes.length) return;
 
     routes.on('change', 'input', function() {
-
         const form = $(this).parents('form');
         const activeRoute = form.find($('.route.active'));
         const route = form.find($(`[data-route=${$(this).val()}]`));
