@@ -33,7 +33,7 @@ class SiteController extends Controller
     {
         $data['page_title'] = 'Contact Us | LogistiQuote';
         $data['page_name'] = 'contact_us';
-        return view('frontend.contact_us', $data);
+        return view($this->theme.'.frontend.contact_us', $data);
     }
 
     public function contact(Request $request)
@@ -41,8 +41,8 @@ class SiteController extends Controller
         // dd( (string) $request->message);
         $data = [];
         $data = array(
-            // 'to'      => array('support@logistiquote.com'),
-            'to'      => array('support@logistiquote.com'),
+            // 'to'      => array('yii86@ukr.net'),
+           'to'      => array('support@logistiquote.com'),
             'subject' => $request->subject,
             'name' => $request->name,
             'phone' => $request->phone,
