@@ -45,7 +45,7 @@
                                         <div class="input">
                                             <div class="input__holder">
                                                 <label for="shipment-origin">Port, Country, City, Zip</label>
-                                                <input type="text" id="shipment-origin" name="origin" required>
+                                                <input type="text" id="shipment-origin" placeholder="" name="origin"  required>
                                                 <button type="button" aria-label="Close"></button>
                                             </div>
                                             <span class="input__text">Origin of shipment</span>
@@ -53,7 +53,7 @@
                                         <div class="input">
                                             <div class="input__holder">
                                                 <label for="shipment-destination">Port, Country, City, Zip</label>
-                                                <input type="text" id="shipment-destination" name="destination" required>
+                                                <input type="text" id="shipment-destination" placeholder="" name="destination" required>
                                                 <button type="button" aria-label="Close"></button>
                                             </div>
                                             <span class="input__text">Destination of shipment</span>
