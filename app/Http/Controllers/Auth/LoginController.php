@@ -69,7 +69,7 @@ class LoginController extends Controller
     }
     public function showLoginForm()
     {
-        if($this->theme=='new')
+        if(config('app.theme')=='new')
         {
             return view('new.auth.login');
         }

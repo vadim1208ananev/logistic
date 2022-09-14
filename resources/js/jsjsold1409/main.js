@@ -9,7 +9,6 @@ import handleDatepicker from './modules/datepicker';
 import handleRoute from './modules/route';
 import handleCalculator from './modules/calculator';
 import handleFileInput from './modules/file';
-import handleUserBlock from './modules/user';
 
 //import '../scss/main.scss';
 
@@ -22,7 +21,7 @@ $(document).ready(() => {
     handleRoute();
     handleCalculator();
     handleFileInput();
-    handleUserBlock();
+
     var weight_type='KG';
     $('.weight_type').html(weight_type);
     $(document).on('change', "input[name='weight_type']", function() {
@@ -58,4 +57,13 @@ $(document).ready(() => {
             $unit_num.find("input[name^='total_weight_units']").val(total_weight.toFixed(2));
         }
     });
+  /*  function initialize() {
+        var input = document.getElementById('shipment-origin');
+        new google.maps.places.Autocomplete(input);
+        var input1 = document.getElementById('shipment-destination');
+        new google.maps.places.Autocomplete(input1);
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize)*/
+
 });

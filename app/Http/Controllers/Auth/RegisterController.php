@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use Session;
 class RegisterController extends Controller
 {
+    use RegistersUsers;
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -22,8 +24,10 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
-    use RegistersUsers;
+     public function showRegistrationForm()
+     {
+         return view(config('app.theme').'.auth.register');
+     }
 
     /**
      * Where to redirect users after registration.
@@ -83,16 +87,16 @@ class RegisterController extends Controller
         ]);
         if($data['role']=="vendor"){
            echo"<script>location.href='https://www.logistiquote.com/stop'</script>";
-            
-         exit();    
+
+         exit();
         }
         else{
-             
-        return $user;
-            
-        }
-       
 
-    
+        return $user;
+
+        }
+
+
+
     }
 }

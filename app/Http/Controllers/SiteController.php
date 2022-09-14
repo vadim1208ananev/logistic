@@ -26,14 +26,14 @@ class SiteController extends Controller
 
         $data['page_title'] = 'Homepage | LogistiQuote';
         $data['page_name'] = 'homepage';
-        return view($this->theme.'.frontend.index', $data);
+        return view(config('app.theme').'.frontend.index', $data);
     }
 
     public function contact_us()
     {
         $data['page_title'] = 'Contact Us | LogistiQuote';
         $data['page_name'] = 'contact_us';
-        return view($this->theme.'.frontend.contact_us', $data);
+        return view(config('app.theme').'.frontend.contact_us', $data);
     }
 
     public function contact(Request $request)
@@ -102,12 +102,12 @@ class SiteController extends Controller
        //.. if($fileContents->type == 'lcl' || $fileContents->transportation_type == 'air')
        if($session_contents['type'] == 'lcl' || $session_contents['transportation_type'] == 'air')
         {
-            return view($this->theme.'.frontend.get_quote_lcl', $data);
+            return view(config('app.theme').'.frontend.get_quote_lcl', $data);
         }
        //.. else if($fileContents->transportation_type == 'sea' && $fileContents->type == 'fcl')
         else if($session_contents['transportation_type'] == 'sea' && $session_contents['type'] == 'fcl')
         {
-            return view($this->theme.'.frontend.get_quote_fcl', $data);
+            return view(config('app.theme').'.frontend.get_quote_fcl', $data);
         }
         else
         {

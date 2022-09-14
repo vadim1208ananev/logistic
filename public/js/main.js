@@ -11100,6 +11100,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_route__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/route */ "./resources/js/js/modules/route.js");
 /* harmony import */ var _modules_calculator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/calculator */ "./resources/js/js/modules/calculator.js");
 /* harmony import */ var _modules_file__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/file */ "./resources/js/js/modules/file.js");
+/* harmony import */ var _modules_user__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/user */ "./resources/js/js/modules/user.js");
+
 
 
 
@@ -11120,6 +11122,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   Object(_modules_route__WEBPACK_IMPORTED_MODULE_7__["default"])();
   Object(_modules_calculator__WEBPACK_IMPORTED_MODULE_8__["default"])();
   Object(_modules_file__WEBPACK_IMPORTED_MODULE_9__["default"])();
+  Object(_modules_user__WEBPACK_IMPORTED_MODULE_10__["default"])();
   var weight_type = 'KG';
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.weight_type').html(weight_type);
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('change', "input[name='weight_type']", function () {
@@ -11155,13 +11158,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       $unit_num.find("input[name^='total_weight_units']").val(total_weight.toFixed(2));
     }
   });
-  /*  function initialize() {
-        var input = document.getElementById('shipment-origin');
-        new google.maps.places.Autocomplete(input);
-        var input1 = document.getElementById('shipment-destination');
-        new google.maps.places.Autocomplete(input1);
-    }
-     google.maps.event.addDomListener(window, 'load', initialize)*/
 });
 
 /***/ }),
@@ -11612,6 +11608,43 @@ __webpack_require__.r(__webpack_exports__);
   tabs.on('click', '.tabs__title:not(.active)', function () {
     setTabs(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this));
   });
+});
+
+/***/ }),
+
+/***/ "./resources/js/js/modules/user.js":
+/*!*****************************************!*\
+  !*** ./resources/js/js/modules/user.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var user = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.user-block');
+  if (!user.length) return;
+  var btn = user.find('.user-block__btn');
+  var popup = user.find('.user-block__window');
+  btn.on('click', function () {
+    popup.toggleClass('active');
+
+    if (popup.hasClass('active')) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on('click', closeAdditionalWindows);
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off('click', closeAdditionalWindows);
+    }
+  });
+
+  var closeAdditionalWindows = function closeAdditionalWindows(e) {
+    if (!popup.is(e.target) && popup.has(e.target).length === 0 && !btn.is(e.target) && btn.has(e.target).length === 0) {
+      popup.removeClass('active');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).off('click', closeAdditionalWindows);
+    }
+  };
 });
 
 /***/ }),

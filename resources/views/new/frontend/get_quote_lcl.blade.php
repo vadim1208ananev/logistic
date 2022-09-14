@@ -199,7 +199,7 @@
                                         <input type="checkbox" id="dimension-type" name="dimension_type" value="inches">
                                         <label for="dimension-type">
                                             <span>Cm</span>
-                                            <span class="checked">Inches</span>
+                                            <span class="checked">Inch</span>
                                         </label>
                                     </div>
                                 </div>
@@ -209,7 +209,7 @@
                                         <input type="checkbox" id="weight-type" name="weight_type" value="pounds">
                                         <label for="weight-type">
                                             <span>Kg</span>
-                                            <span class="checked">Pounds</span>
+                                            <span class="checked">Lb</span>
                                         </label>
                                     </div>
                                 </div>
