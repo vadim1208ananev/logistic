@@ -2,7 +2,7 @@
 <!-- Index scripts -->
 <script type="text/javascript">
     function initialize() {
-        return;
+       // return;
         var input = document.getElementById('shipment-origin');
         new google.maps.places.Autocomplete(input);
         var input1 = document.getElementById('shipment-destination');
