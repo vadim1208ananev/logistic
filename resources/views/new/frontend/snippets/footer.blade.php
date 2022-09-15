@@ -6,7 +6,7 @@
                 <img src="{{ asset('public/frontend/img/footer.svg') }}" alt="Point">
             </figure>
             <p class="footer__text">Founded in 2018, LogistiQuote is a trusted community marketplace for people to send goods around the world. LogistiQuote.com helps to arrange the international cargo delivery from 1m³ or 50 kg till shiploads. Thanks to world-class customer service and a growing community of cargo agents, LogistiQuote.com is the easiest way for people to ship their goods overseas, or to offer free space in the container, truck or vessel to millions of consignors.</p>
-            <section class="footer__subscription">
+         <!--   <section class="footer__subscription">
                 <h2 class="footer__subscription-title">Subscribe</h2>
                 <form action="#" class="footer__subscription-form" name="subscription">
                     <div class="footer__subscription-input input">
@@ -22,18 +22,18 @@
                         </svg>
                     </button>
                 </form>
-            </section>
+            </section>-->
         </div>
         <div class="footer__bottom">
             <ul class="footer__social">
-                <li class="footer__social-item">
+              <!--  <li class="footer__social-item">
                     <a href="#" class="footer__social-link" title="Facebook">
                         <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                             <path d="M32 16C32 7.1625 24.8375 0 16 0C7.1625 0 0 7.1625 0 16C0 23.9875 5.85 30.6062 13.5 31.8062V20.625H9.4375V16H13.5V12.475C13.5 8.46563 15.8875 6.25 19.5438 6.25C21.2938 6.25 23.125 6.5625 23.125 6.5625V10.5H21.1063C19.1188 10.5 18.5 11.7344 18.5 13V16H22.9375L22.2281 20.625H18.5V31.8062C26.15 30.6062 32 23.9875 32 16Z" />
                         </svg>
                     </a>
                 </li>
-                <li class="footer__social-item">
+               <li class="footer__social-item">
                     <a href="#" class="footer__social-link" title="Instagram">
                         <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 32C24.8366 32 32 24.8366 32 16C32 7.16344 24.8366 0 16 0ZM12.4822 7.51718C13.3924 7.47576 13.6833 7.46562 16.0008 7.46562H15.9982C18.3164 7.46562 18.6062 7.47576 19.5164 7.51718C20.4249 7.55878 21.0453 7.70261 21.5893 7.91363C22.1511 8.13141 22.6258 8.42297 23.1005 8.89764C23.5751 9.37196 23.8667 9.84805 24.0854 10.4093C24.2951 10.9519 24.4391 11.572 24.4818 12.4804C24.5227 13.3907 24.5334 13.6815 24.5334 15.999C24.5334 18.3166 24.5227 18.6067 24.4818 19.517C24.4391 20.425 24.2951 21.0453 24.0854 21.5881C23.8667 22.1492 23.5751 22.6252 23.1005 23.0996C22.6263 23.5742 22.1509 23.8665 21.5899 24.0845C21.0469 24.2955 20.4261 24.4393 19.5177 24.4809C18.6074 24.5223 18.3175 24.5325 15.9998 24.5325C13.6824 24.5325 13.3917 24.5223 12.4815 24.4809C11.5732 24.4393 10.953 24.2955 10.41 24.0845C9.84912 23.8665 9.37303 23.5742 8.89889 23.0996C8.4244 22.6252 8.13284 22.1492 7.9147 21.5879C7.70386 21.0453 7.56003 20.4252 7.51826 19.5168C7.47701 18.6065 7.4667 18.3166 7.4667 15.999C7.4667 13.6815 7.47737 13.3905 7.51808 12.4803C7.55897 11.5722 7.70297 10.9519 7.91453 10.4091C8.13319 9.84805 8.42475 9.37196 8.89943 8.89764C9.37374 8.42315 9.84984 8.13159 10.4111 7.91363C10.9537 7.70261 11.5738 7.55878 12.4822 7.51718Z" />
@@ -55,15 +55,15 @@
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 32C24.8366 32 32 24.8366 32 16C32 7.16344 24.8366 0 16 0ZM12.75 22.6446L24 16.1494L12.75 9.65422L12.75 22.6446Z" />
                         </svg>
                     </a>
-                </li>
+                </li>-->
             </ul>
             <a href="{{route('index')}}" class="footer__logo">
                 <img src="{{ asset('public/frontend/img/logo-white.svg') }} " alt="LogistiQuote logo">
             </a>
             <nav class="footer__navigation">
                 <a target="_blank" href="public/attachments/TERMS.docx" class="footer__link active">Terms</a>
-                <a href="#" class="footer__link">Privacy</a>
-                <a href="#" class="footer__link">Cookies</a>
+            <!--    <a href="#" class="footer__link">Privacy</a>
+                <a href="#" class="footer__link">Cookies</a>-->
             </nav>
         </div>
     </div>
