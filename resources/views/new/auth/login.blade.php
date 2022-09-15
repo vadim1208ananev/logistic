@@ -36,7 +36,7 @@
                     <a href="{{ route('register') }}" class="single-page__footer-link">Sign Up</a>
                     <a href="{{ route('password.request') }}" class="single-page__footer-link">Forgot Password?</a>
                 </div>
-                <p class="single-page__footer-text">By signing in or creating an account, you agree with our <a href="https://docs.google.com/document/d/1ekmQw-GAlQS33g1J9r1_iutdKcbZ-uQJt0yEfYUR6xc/edit">Terms & conditions</a></p>
+                <p class="single-page__footer-text">By signing in or creating an account, you agree with our <a href="public/attachments/TERMS.docx">Terms & conditions</a></p>
             </div>
         </div>
     </div>

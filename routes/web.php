@@ -3,10 +3,10 @@
 use App\Proposal;
 use Illuminate\Support\Facades\Route;
 
-Route::get('test', function () 
+Route::get('test', function ()
 {
 
-    
+
     $proposals = Proposal::where('user_id', 4)
     ->where('status', 'active')
     ->where('quotation_id', 7)->with('vendor')->get()->toArray();
@@ -27,7 +27,7 @@ Route::get('clear', function () {
 
 // CronJob Controller
 //Route::get('/cron', 'CronJobController@index')->name('cronjob');
-
+Route::get('/terms', 'SiteController@terms')->name('terms');
 Route::get('/', 'SiteController@index')->name('index');
 Route::get('/contact-us', 'SiteController@contact_us')->name('contact_us');
 Route::post('/contact', 'SiteController@contact')->name('contact');
@@ -94,11 +94,11 @@ Route::get('/made_proposals', 'ProposalController@made')->name('proposal.made_pr
 Route::get('merge_them', function () {
 
     $arabic="";
-    foreach(file( url('public/trans/variables.json') ) as $line) 
+    foreach(file( url('public/trans/variables.json') ) as $line)
     {
         $arabic=$arabic.$line.'+<br>';
     }
-    foreach(file( url('public/trans/arabic_translation.json') ) as $line) 
+    foreach(file( url('public/trans/arabic_translation.json') ) as $line)
     {
         $from = '/'.preg_quote('+', '/').'/';
         $arabic = preg_replace($from, $line, $arabic, 1);

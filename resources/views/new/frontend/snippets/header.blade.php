@@ -122,7 +122,7 @@
                                 <a href="{{ route('contact_us') }}" class="main-menu__link">Company</a>
                             </li>
                             <li class="main-menu__item">
-                                <a href="https://chat.google.com/u/0/api/get_attachment_url?url_type=DOWNLOAD_URL&attachment_token=AD3oLg2hZsRf6eLzoMZhiuOO8JRwGZdoihXs7aP2MV82YbUEFYf%2BPZZBkPRfI3I2nDamlfZvE6W%2BHQf27DJiPSQZq4jrNxaDveZXA9nbickjMn6sbpdJMnP07NQePnbMStVhQvVVlGs2aGYIbzMG8iVztJxqYHUUPJ3%2Bj7MRggLezG7i0a4IZypJx5wKtKPU1lyqt2VT61EHagCA4scjThRi7hCc31Vk5OR6xJRRG5ILc%2BfRykF%2F0UY2YJZi%2Biw9sJO%2F9gIvp%2BDvpkukgQrhtk%2FoFBv8s4KY89I231UKB765hiLljHbSdQMx9uy82W%2BliT7cU8P3eI8uLTssh%2FqDGHfB2snr4VtQu8jQEeeMUkh65W%2BovGhuxV7dfFbYhynkJZK7KTdDkVgGfE%2B%2FNwjG6SV1%2BORWgEBJ1jYWTJM%2BLeHFigyKq3F2%2BFqPlNFfSGVMW3T%2FpvA0Rb6R1zULxkkffwjT2SoNzIPi%2BXBiKtMKOKOdD4TJLfKWvjbuBTXdIyeiJs3VqgyoNd8pphCn1qH6LVv5RXrJVJZTE4%2FN0A%3D%3D&content_type=application%2Fvnd.openxmlformats-officedocument.wordprocessingml.document&auto=true" target="_blank" class="main-menu__link">Terms</a>
+                                <a href="public/attachments/TERMS.docx" target="_blank" class="main-menu__link">Terms</a>
                             </li>
                             @guest
                             <li class="main-menu__item">

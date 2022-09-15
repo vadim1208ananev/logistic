@@ -114,6 +114,9 @@ class SiteController extends Controller
             return redirect()->back();
         }
     }
+    public function terms(){
+        return view('new.frontend.terms');
+    }
     public function form_quote_step2(Request $request)
     {
           if($request->file('attachment'))
