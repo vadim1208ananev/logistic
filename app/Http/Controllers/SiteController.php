@@ -126,8 +126,14 @@ class SiteController extends Controller
      //..   $fileContents = Storage::disk('public')->get('store_pending_form.json');
      //..   $fileContents = json_decode($fileContents, true);
          $session_contents=session()->get('data');
+
      //...   $merge = array_merge($fileContents, $request->all());
         $merge_session= array_merge($session_contents, $request->all());
+        if(isset($merge_session['attachment']))
+        {
+            unset($merge_session['attachment']);
+        }
+
         session([
             'data' =>$merge_session
         ]);
