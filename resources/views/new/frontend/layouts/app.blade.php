@@ -6,9 +6,9 @@
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="">
-    <link rel="icon" href="{{ asset('public/frontend/img/favicon.ico') }}">
-    <link rel="icon" href="{{ asset('public/frontend/img/icon.svg') }}" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="{{ asset('public/frontend/img/apple-touch-icon.png') }}">
+    <link rel="icon" href="{{ asset('public/favicon.png') }}">
+
+    <link rel="apple-touch-icon" href="{{ asset('public/favicon.png') }}">
     <title> {{ isset($page_title) ? $page_title : 'LogistiQuote' }} </title>
     @include('new.frontend.snippets.top-scripts')
 </head>
