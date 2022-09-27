@@ -11,7 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/js/main.js', 'public/js')
+mix.js('resources/js/js/main.js', 'public/js').js('resources/js/js/picker.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
 
 

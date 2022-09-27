@@ -10,7 +10,7 @@ import handleRoute from './modules/route';
 import handleCalculator from './modules/calculator';
 import handleFileInput from './modules/file';
 import handleUserBlock from './modules/user';
-
+//import "air-datepicker/air-datepicker.css"
 //import '../scss/main.scss';
 
 $(document).ready(() => {

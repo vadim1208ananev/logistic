@@ -1,6 +1,6 @@
 @extends('panels.layouts.master')
 @section('content')
-
+    <script defer src="{{ asset('public/js/picker.js') }}"></script></body>
 <style>
     i {
         margin-right: 10px;
@@ -536,8 +536,8 @@
                                     <div class="col-md-4 mb-3">
                                         <label for="validationServer01">Ready to load date</label>
                                         <input type="text"
-                                            class="form-control @error('ready_to_load_date') is-invalid @enderror"
-                                            name="ready_to_load_date" value="{{ old('ready_to_load_date') }}" />
+                                            class="calendar form-control "
+                                            name="ready_to_load_date"  />
                                         @error('ready_to_load_date')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -1125,7 +1125,7 @@ google.maps.event.addDomListener(window, 'load', initialize)
 
     });
 
-    $(function () {
+   /* $(function () {
         $('input[name="ready_to_load_date"]').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
@@ -1136,7 +1136,7 @@ google.maps.event.addDomListener(window, 'load', initialize)
                 format: 'D-M-YYYY'
             }
         });
-    });
+    });*/
 
 </script>
 
