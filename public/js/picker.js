@@ -11802,6 +11802,17 @@ __webpack_require__.r(__webpack_exports__);
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   Object(_modules_datepicker__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  var selected_weight = 'kg';
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("input[name='weight_type']").on('click', function () {
+    selected_weight = jquery__WEBPACK_IMPORTED_MODULE_0___default()("input[name='weight_type']:checked").val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("input[name^='container_weight']").attr("placeholder", "Weight (".concat(selected_weight, ")"));
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.weight_type').html(selected_weight);
+  });
+  var selected_dimension = 'cm';
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("input[name='dimension_type']").on('click', function () {
+    selected_dimension = jquery__WEBPACK_IMPORTED_MODULE_0___default()("input[name='dimension_type']:checked").val();
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.dimension_type').html(selected_dimension);
+  });
 });
 
 /***/ }),

@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="design/images/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="public/favicon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="public/favicon.png">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxkpltOXt2qd6cK3ObXwSiTzydGHUZyn0&libraries=places"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171699524-2"></script>
     <script>
@@ -133,7 +134,7 @@
                     <i class="fad fa-user-alt"></i>
                     <span>Profile</span></a>
             </li>
-            
+
             @elseif(Auth::user()->role == 'admin')
 
             <!-- Nav Item - Dashboard -->
@@ -158,14 +159,14 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Quotations</span></a>
             </li>
-            
+
             <!-- Nav Item - My proposals -->
             <li class="nav-item <?php echo ($page_name == 'proposals') ? 'active' : ''; ?>">
                 <a class="nav-link" href="{{ route('proposals.view_all') }}">
                     <i class="fad fa-file-signature"></i>
                     <span>Proposals</span></a>
             </li>
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -189,7 +190,7 @@
                     <i class="far fa-users-crown"></i>
                     <span>Vendors</span></a>
             </li>
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -210,7 +211,7 @@
 
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); 
+                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
                     <i class="fal fa-sign-out"></i>
                     <span>Logout</span></a>
@@ -289,7 +290,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span
                                     class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                    
+
                                  <?php
                                     if(Auth::user()->image){?>
                                         <img class="img-profile rounded-circle"

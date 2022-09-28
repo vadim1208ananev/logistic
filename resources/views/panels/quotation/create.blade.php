@@ -1,6 +1,8 @@
 @extends('panels.layouts.master')
 @section('content')
-    <script defer src="{{ asset('public/js/picker.js') }}"></script></body>
+    <script defer src="{{ asset('public/js/picker.js') }}"></script>
+
+    </body>
 <style>
     i {
         margin-right: 10px;
@@ -434,21 +436,21 @@
                                 <div class="row">
 
                                     <div class="col-md-6">
-                                        <label>Origin *</label>
+                                        <label>Origin of shipment *</label>
                                     </div>
                                     <div class="form-row">
-                                        <div class="col-md-3 mb-3">
+                                        <div class="col-md-12 mb-12">
                                             <input type="text"
-                                                class="form-control @error('origin_city') is-invalid @enderror"
-                                                id="validationServer03" placeholder="City"
-                                                value="{{ old('origin_city') }}" name="origin_city">
-                                            @error('origin_city')
+                                                class="form-control @error('origin') is-invalid @enderror"
+                                                id="field1" placeholder="Origin"
+                                                value="{{ old('origin') }}" name="origin">
+                                            @error('origin')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-3 mb-3">
+                                    <!--   <div class="col-md-3 mb-3">
                                             <input type="text"
                                                 class="form-control @error('origin_state') is-invalid @enderror"
                                                 id="validationServer04" placeholder="State" name="origin_state"
@@ -480,25 +482,25 @@
                                                 {{ $message }}
                                             </div>
                                             @enderror
-                                        </div>
+                                        </div>-->
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label>Destination *</label>
+                                        <label>Destination of shipment *</label>
                                     </div>
                                     <div class="form-row">
-                                        <div class="col-md-3 mb-3">
+                                        <div class="col-md-12 mb-12">
                                             <input type="text"
-                                                class="form-control @error('destination_city') is-invalid @enderror"
-                                                id="validationServer03" placeholder="City" name="destination_city"
-                                                value="{{ old('destination_city') }}">
-                                            @error('destination_city')
+                                                class="form-control @error('destination') is-invalid @enderror"
+                                                id="field2" placeholder="Destination" name="destination"
+                                                value="{{ old('destination') }}">
+                                            @error('destination')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
                                             @enderror
                                         </div>
-                                        <div class="col-md-3 mb-3">
+                                     <!--   <div class="col-md-3 mb-3">
                                             <input type="text"
                                                 class="form-control @error('destination_state') is-invalid @enderror"
                                                 id="validationServer04" placeholder="State" name="destination_state"
@@ -530,7 +532,7 @@
                                                 {{ $message }}
                                             </div>
                                             @enderror
-                                        </div>
+                                        </div>-->
                                     </div>
 
                                     <div class="col-md-4 mb-3">
@@ -565,6 +567,7 @@
                                     </li>
                                 </ul>
                             </div>
+<!--start2step-->
 
                             <div class="tab-pane" role="tabpanel" id="step2" >
                                 <h4 class="text-center">Description of Goods</h4>
@@ -629,7 +632,7 @@
                                             class="custom-select mr-sm-2 @error('transportation_type') is-invalid @enderror"
                                             id="transportation_type" name="transportation_type">
                                             <option value="" selected>Choose...</option>
-                                            <option value="ocean">Ocean Freight</option>
+                                            <option value="sea">Ocean Freight</option>
                                             <option value="air">Air Freight</option>
                                         </select>
                                         @error('transportation_type')
@@ -691,7 +694,7 @@
                                             <div class="col-md-4">
                                                 <input type="number"
                                                     class="form-control @error('container_weight') is-invalid @enderror"
-                                                    id="validationServer03" placeholder="Weight (kg)"
+                                                    id="validationServer032" placeholder="Weight (kg)"
                                                     name="container_weight[]" value="">
                                                 @error('gross_weight')
                                                 <div class="invalid-feedback">
@@ -718,6 +721,8 @@
                                     </div>
                                 </div>
 
+
+
                                 <div class="form-row my-3">
                                     <div class="col-md-3 mb-3">
                                         <div class="col-auto my-1">
@@ -741,6 +746,59 @@
                                     </div>
                                 </div>
 
+                                <div class="form-row my-3">
+                                    <div class="col-md-3 mb-3">
+                                        <div class="col-auto my-1">
+                                            Dimensions Type
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <div class="col-auto my-1">
+                                            <div class="col-auto my-1">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="dimension_type" id="exampleRadios13" value="cm" checked>
+                                                    <label class="form-check-label" for="exampleRadios1">
+                                                        Cm
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="dimension_type" id="exampleRadios22" value="inches">
+                                                    <label class="form-check-label" for="exampleRadios2">
+                                                        Inch
+                                                    </label>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-row my-3">
+                                    <div class="col-md-3 mb-3">
+                                        <div class="col-auto my-1">
+                                            Weight Type
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <div class="col-auto my-1">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="weight_type" id="exampleRadios1" value="kg" checked>
+                                            <label class="form-check-label" for="exampleRadios1">
+                                                Kg
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="weight_type" id="exampleRadios2" value="pounds">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                Lb
+                                            </label>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
+
 
 
                                 <ul class="list-inline pull-right">
@@ -751,7 +809,7 @@
                                     </li>
                                 </ul>
                             </div>
-
+<!--start3step-->
                             <div class="tab-pane" role="tabpanel" id="step3">
                                 <h4 class="text-center">Shipment Calculations</h4>
                                 <hr>
@@ -792,7 +850,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <label for="">Gross Weight</label>
+                                            <label for="">Gross Weight (<span class="weight_type">Kg</span>)</label>
                                             <input type="number"
                                                 class="form-control @error('total_weight') is-invalid @enderror"
                                                 id="validationServer04" placeholder="Gross Weight" name="total_weight"
@@ -814,7 +872,7 @@
                                             <!-- <label for="">Dimensions (cm)</label> -->
                                             <div class="form-row">
                                                 <div class="col-md-2 mb-3">
-                                                    <label for="">Length (cm)</label>
+                                                    <label for="">Length (<span class="dimension_type">CM</span>)</label>
                                                     <input type="number"
                                                         class="form-control @error('l') is-invalid @enderror"
                                                         id="validationServer04" placeholder="length" name="l[]">
@@ -825,7 +883,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-2 mb-3">
-                                                    <label for="">Width (cm)</label>
+                                                    <label for="">Width (<span class="dimension_type">CM</span>)</label>
                                                     <input type="number"
                                                         class="form-control @error('w') is-invalid @enderror"
                                                         id="validationServer03" placeholder="width" name="w[]">
@@ -836,7 +894,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-2 mb-3">
-                                                    <label for="">Height (cm)</label>
+                                                    <label for="">Height (<span class="dimension_type">CM</span>)</label>
                                                     <input type="number"
                                                         class="form-control @error('h') is-invalid @enderror"
                                                         id="validationServer03" placeholder="height" name="h[]">
@@ -847,7 +905,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-2 mb-3 ml-3">
-                                                    <label for="">Gross Weight (kg)</label>
+                                                    <label for="">Gross Weight (<span class="weight_type">Kg</span>)</label>
                                                     <input type="number"
                                                         class="form-control @error('gross_weight') is-invalid @enderror"
                                                         id="validationServer03" placeholder="weight"
@@ -859,7 +917,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-md-2 mb-3 ml-3">
-                                                    <label for="">Vol Weight (kg)</label>
+                                                    <label for="">Vol Weight (<span class="weight_type">Kg</span>)</label>
                                                     <input type="number"
                                                         class="form-control @error('total_weight_units') is-invalid @enderror"
                                                         id="validationServer03" placeholder="weight"
@@ -897,7 +955,7 @@
                                     </li>
                                 </ul>
                             </div>
-
+<!--start4step-->
                             <div class="tab-pane" role="tabpanel" id="step4">
                                 <h4 class="text-center">Other Info</h4>
                                 <hr>
@@ -994,19 +1052,19 @@
 
 
 @endsection
-<script type="text/javascript">
-    function initialize() {
-  var input = document.getElementById('autocomplete');
-  new google.maps.places.Autocomplete(input);
-  var input1 = document.getElementById('autocomplete2');
-  new google.maps.places.Autocomplete(input1);
-}
 
-google.maps.event.addDomListener(window, 'load', initialize)
-</script>
 @section('bottom_scripts')
 <script>
     $(document).ready(function () {
+
+      //  $(document).on('change', "input[name='weight_type']", function() {
+       //    $("input[name='weight_type']:checked").change(function () {
+       //        alert(456456)
+            //    selected_value = $("input[name='weight_type']:checked").val();
+         //  alert(selected_value);
+      //  });
+
+
 
         // Dynamic changes
         $(document).on('keyup', "input[name^='l'], input[name^='w'], input[name^='h']", function () {
@@ -1033,7 +1091,7 @@ google.maps.event.addDomListener(window, 'load', initialize)
         $('#for_flc').hide();
 
         // On load
-        if ($("#transportation_type").find(':selected').val() == 'ocean') {
+        if ($("#transportation_type").find(':selected').val() == 'sea') {
             $('#type_of_shipment').empty();
             $("#type_of_shipment").append(new Option("LCL", "lcl"));
             $("#type_of_shipment").append(new Option("FCL", "fcl"));
@@ -1047,7 +1105,7 @@ google.maps.event.addDomListener(window, 'load', initialize)
         }
 
         $("#transportation_type").change(function () {
-            if ($(this).find(':selected').val() == 'ocean') {
+            if ($(this).find(':selected').val() == 'sea') {
                 $('#if_not_air').show();
                 $('#type_of_shipment').empty();
                 $("#type_of_shipment").append(new Option("LCL", "lcl"));
@@ -1071,7 +1129,10 @@ google.maps.event.addDomListener(window, 'load', initialize)
 
         // On calculation radio button clicks
         $('input:radio').change(function () {
+
             var el = $(this).val();
+           if(['inches','cm','pounds','kg'].find(inel=>inel==el)) return
+
             if (el == 'units') {
                 $('#dynamic_buttons').show();
                 $('.dynamic-field').show();

@@ -15,8 +15,8 @@ class QuotationController extends Controller
     public function __construct()
     {
         //Specify required role for this controller here in checkRole:xyz
-        // $this->middleware(['auth', 'checkRole:user']); 
-        $this->middleware(['auth', 'verified']); 
+        // $this->middleware(['auth', 'checkRole:user']);
+        $this->middleware(['auth', 'verified']);
     }
     /**
      * Display a listing of the resource.
@@ -25,11 +25,11 @@ class QuotationController extends Controller
      */
     public function index()
     {
-      
+
         $data['quotations'] = Quotation::where('user_id', Auth::user()->id)
        ->orderBy('id', 'DESC')
         ->get();
-        
+
         $data['page_name'] = 'quotations';
         $data['page_title'] = 'View quotations | LogistiQuote';
         return view('panels.quotation.index', $data);
@@ -42,6 +42,7 @@ class QuotationController extends Controller
      */
     public function create()
     {
+
         $data['page_name'] = 'create_quotation';
         $data['page_title'] = 'Create quotation | LogistiQuote';
         return view('panels.quotation.create', $data);
@@ -55,16 +56,20 @@ class QuotationController extends Controller
      */
     public function store(Request $request)
     {
+        $const_coeffiient=(int)config('app.const');
         $validatedData = $request->validate([
             'incoterms' => ['required', 'string', 'min:2', 'max:255'],
-            'origin_city' => ['required', 'string', 'min:2', 'max:255'],
+            'origin' => ['required', 'string', 'min:2', 'max:255'],
+
+            'weight_type' => ['required','max:255'],
+            'dimension_type' => ['required','max:255'],
             // 'origin_state' => ['required', 'string', 'min:2', 'max:255'],
-            'origin_country' => ['required', 'string', 'min:2', 'max:255'],
-        
-            'destination_city' => ['required', 'string', 'min:2', 'max:255'],
+           // 'origin_country' => ['required', 'string', 'min:2', 'max:255'],
+
+            'destination' => ['required', 'string', 'min:2', 'max:255'],
             // 'destination_state' => ['required', 'string', 'min:2', 'max:255'],
-            'destination_country' => ['required', 'string', 'min:2', 'max:255'],
-            
+          //  'destination_country' => ['required', 'string', 'min:2', 'max:255'],
+
             'transportation_type' => ['required', 'string', 'min:2', 'max:255'],
             'type' => ['required', 'string', 'min:2', 'max:255'],
             'ready_to_load_date' => ['required', 'string', 'min:2', 'max:255'],
@@ -72,7 +77,7 @@ class QuotationController extends Controller
             'calculate_by' => ['required', 'string', 'min:2', 'max:255'],
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-
+///dd($validatedData);
         if(explode('-' ,$request->ready_to_load_date)[2] > 2037)
         {
             return redirect()->back()->withErrors(['Date year can not be greater than year-2037!']);
@@ -80,10 +85,15 @@ class QuotationController extends Controller
         $quotation = new Quotation;
         $quotation->user_id = Auth::user()->id;
         $quotation->quotation_id = mt_rand();
-        $quotation->origin = $request->origin_city.', '.$request->origin_state.', '.$request->origin_country.'. '.$request->origin_zip;
-        $quotation->destination = $request->destination_city.', '.$request->destination_state.', '.$request->destination_country.'. '.$request->destination_zip;
-        $quotation->origin_zip = $request->origin_zip;
-        $quotation->destination_zip = $request->destination_zip;
+      //  $quotation->origin = $request->origin_city.', '.$request->origin_state.', '.$request->origin_country.'. '.$request->origin_zip;
+      //  $quotation->destination = $request->destination_city.', '.$request->destination_state.', '.$request->destination_country.'. '.$request->destination_zip;
+       $quotation->origin = $request->origin;
+        $quotation->destination = $request->destination;
+
+        $quotation->weight_type = $request->weight_type;
+          $quotation->dimension_type = $request->dimension_type;
+    //    $quotation->origin_zip = $request->origin_zip;
+      //  $quotation->destination_zip = $request->destination_zip;
         $quotation->transportation_type = $request->transportation_type;
         $quotation->type = $request->type;
         $ready_to_load_date = Carbon::createFromFormat('d-m-Y', $request->ready_to_load_date );
@@ -94,7 +104,13 @@ class QuotationController extends Controller
             $quotation->pickup_address = $request->pickup_address;
             $quotation->destination_address = $request->final_destination_address;
         }
-        
+
+      /*  $quotation->weight_type = isset($fileContents->weight_type) ? $fileContents->weight_type : 'kg';
+        $quotation->dimension_type = isset($fileContents->dimension_type) ? $fileContents->dimension_type : 'cm';*/
+
+
+
+
         $quotation->value_of_goods = $request->value_of_goods;
         $quotation->description_of_goods = $request->description_of_goods;
         $quotation->isStockable = $request->isStockable ? $request->isStockable : 'No';
@@ -103,19 +119,19 @@ class QuotationController extends Controller
         $quotation->remarks = $request->remarks;
         $quotation->isClearanceReq = $request->isClearanceReq ? $request->isClearanceReq : 'No';
         $quotation->insurance = $request->insurance ? $request->insurance : 'No';
-        
+
         // Store file
         if($request->file('attachment'))
         {
             $file_name = rand().'.'.$request->file('attachment')->getClientOriginalExtension();
             $request->merge(['attachment_file' => $file_name]);
-            
+
             $isStore = Storage::disk('attachments')->putFileAs('files/', $request->file('attachment'), $file_name);
             $quotation->attachment = $file_name;
         }
 
-        if($request->transportation_type == 'ocean' && $request->type == 'fcl')
-        {   
+        if($request->transportation_type == 'sea' && $request->type == 'fcl')
+        {
             $total_containers = count($request->container_size);
             for($c=0 ;$c<count($request->container_size); $c++)
             {
@@ -134,10 +150,11 @@ class QuotationController extends Controller
             $pallets = [];
             $quantity = count($request->l);
             $total_weight = 0;
+            $gross_weight=0;
             for($i=0; $i<count($request->l); $i++)
             {
-                $volumetric_weight = 
-                ( (float)$request->l[$i] * (float)$request->w[$i] * (float)$request->h[$i] ) / 6000;
+                $volumetric_weight =
+                ( (float)$request->l[$i] * (float)$request->w[$i] * (float)$request->h[$i] ) / $const_coeffiient;
                 $pallets[] = [
                     'length' => $request->l[$i],
                     'width' => $request->w[$i],
@@ -145,11 +162,13 @@ class QuotationController extends Controller
                     'volumetric_weight' => $volumetric_weight,
                     'gross_weight' => $request->gross_weight[$i],
                 ];
+                $gross_weight+=$request->gross_weight[$i];
                 $total_weight += $volumetric_weight;
             }
+            $final_weight=max($gross_weight,$total_weight);
             $quotation->pallets = $pallets;
             $quotation->quantity = $quantity;
-            $quotation->total_weight = number_format($total_weight, 2);
+            $quotation->total_weight = number_format($final_weight, 2);
         }
         else
         {
@@ -159,8 +178,8 @@ class QuotationController extends Controller
         $quotation->save();
 
         // Send quotation to vendors
-       notify_vendor_for_new_quotation($quotation->user_id, $quotation->id);
-
+      // notify_vendor_for_new_quotation($quotation->user_id, $quotation->id);
+        SendMessage::dispatch($quotation->user_id,$quotation->id);
         return redirect(route('quotation.index'));
     }
 
@@ -172,7 +191,7 @@ class QuotationController extends Controller
      */
     public function show($id)
     {
-       
+
         $data['quotation'] = Quotation::where('id', $id)->first();
         if($data['quotation']->attachment != null)
         {
@@ -229,7 +248,7 @@ class QuotationController extends Controller
             'calculate_by' => ['required', 'string', 'min:2', 'max:255'],
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-        
+
         if(explode('-' ,$request->ready_to_load_date)[2] > 2037)
         {
             return redirect()->back()->withErrors(['Date year can not be greater than year-2037!']);
@@ -248,8 +267,8 @@ class QuotationController extends Controller
             $quotation->destination_address = $request->final_destination_address;
         }
 
-        
-        // Delete existing 
+
+        // Delete existing
 
         // Store file
         if($request->file('attachment'))
@@ -259,7 +278,7 @@ class QuotationController extends Controller
             $isStore = Storage::disk('attachments')->putFileAs('files/', $request->file('attachment'), $file_name);
             $quotation->attachment = $file_name;
         }
-        
+
         $quotation->value_of_goods = $request->value_of_goods;
         $quotation->description_of_goods = $request->description_of_goods;
         $quotation->isStockable = $request->isStockable ? $request->isStockable : 'No';
@@ -268,7 +287,7 @@ class QuotationController extends Controller
         $quotation->remarks = $request->remarks;
         $quotation->isClearanceReq = $request->isClearanceReq ? $request->isClearanceReq : 'No';
         $quotation->insurance = $request->insurance ? $request->insurance : 'No';
-        
+
         $quotation->total_weight = $request->total_weight;
 
         if($request->transportation_type == 'sea' && $request->type == 'fcl')
@@ -292,7 +311,7 @@ class QuotationController extends Controller
             $total_weight = 0;
             for($i=0; $i<count($request->l); $i++)
             {
-                $volumetric_weight = 
+                $volumetric_weight =
                 ( (float)$request->l[$i] * (float)$request->w[$i] * (float)$request->h[$i] ) / 6000;
                 $pallets[] = [
                     'length' => $request->l[$i],
@@ -324,7 +343,7 @@ class QuotationController extends Controller
      */
     public function destroy($id)
     {
-        $quotation = Quotation::findOrFail($id); 
+        $quotation = Quotation::findOrFail($id);
         $quotation->status = 'withdrawn';
         $quotation->save();
         return redirect(route('quotation.index'));
@@ -338,7 +357,7 @@ class QuotationController extends Controller
      */
     public function view_all()
     {
-     
+
         $data['quotations'] = Quotation::where('status', '!=', 'done')->latest()->get();
         $data['page_name'] = 'quotations';
         $data['page_title'] = 'View quotations | LogistiQuote';
@@ -415,13 +434,13 @@ class QuotationController extends Controller
           $fileContents=(object)$session_contents;
        //.. $fileContents = Storage::disk('public')->get('store_pending_form.json');
       //..  $fileContents = json_decode($fileContents);
-   
+
         // if(!Auth::check())
         // {
         //     Cache::put('pending_task', 'store_pending_form');
         //     return redirect(route('login'));
         // }
-      
+
         $quotation = new Quotation;
         $quotation->user_id = Auth::user()->id;
         $quotation->quotation_id = mt_rand();
@@ -456,7 +475,7 @@ class QuotationController extends Controller
         $quotation->remarks = $fileContents->remarks;
         $quotation->isClearanceReq = isset($fileContents->isClearanceReq) ? $fileContents->isClearanceReq : 'No';
         $quotation->insurance = isset($fileContents->insurance) ? $fileContents->insurance : 'No';
-        
+
          $quotation->weight_type = isset($fileContents->weight_type) ? $fileContents->weight_type : 'kg';
           $quotation->dimension_type = isset($fileContents->dimension_type) ? $fileContents->dimension_type : 'cm';
 
@@ -482,9 +501,9 @@ class QuotationController extends Controller
              $gross_weight=0;
             for($i=0; $i<count($fileContents->l); $i++)
             {
-                $volumetric_weight = 
+                $volumetric_weight =
                 ( (float)$fileContents->l[$i] * (float)$fileContents->w[$i] * (float)$fileContents->h[$i] ) / $const_coeffiient ;
-               
+
                 $pallets[] = [
                     'length' => $fileContents->l[$i],
                     'width' => $fileContents->w[$i],
@@ -506,12 +525,12 @@ class QuotationController extends Controller
             $quotation->total_weight = $fileContents->total_weight;
         }
         $quotation->save();
-        
+
         session()->forget('data');
              session()->save();
       //..  $isDelete = Storage::disk('public')->delete('store_pending_form.json');
 
-        
+
         // Send quotation to vendors
         SendMessage::dispatch($quotation->user_id,$quotation->id);
      //   notify_vendor_for_new_quotation($quotation->user_id, $quotation->id);
