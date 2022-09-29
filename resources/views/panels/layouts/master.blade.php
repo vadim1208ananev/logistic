@@ -8,10 +8,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon/>
-    <link rel="apple-touch-icon" sizes="180x180" href="design/images/favicon/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="public/favicon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="public/favicon.png">
+    <link rel="icon" href="{{ asset('public/favicon.png') }}">
+
+    <link rel="apple-touch-icon" href="{{ asset('public/favicon.png') }}">
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxkpltOXt2qd6cK3ObXwSiTzydGHUZyn0&libraries=places"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171699524-2"></script>

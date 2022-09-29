@@ -11813,6 +11813,16 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
     selected_dimension = jquery__WEBPACK_IMPORTED_MODULE_0___default()("input[name='dimension_type']:checked").val();
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.dimension_type').html(selected_dimension);
   });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(".wizard-inner [role=presentation] [role=tab]").on('click', function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".wizard-inner [role=presentation]").removeClass('active');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().addClass('active');
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("[type=button][href^='#step']").on('click', function (e) {
+    e.preventDefault();
+    var attr_href = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('href');
+    var selecter = ".wizard-inner [href='".concat(attr_href, "']");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(selecter).trigger('click');
+  });
 });
 
 /***/ }),

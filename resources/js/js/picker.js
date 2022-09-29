@@ -19,7 +19,17 @@ $(document).ready(() => {
         $('.dimension_type').html(selected_dimension);
 
     });
+    $(".wizard-inner [role=presentation] [role=tab]").on('click',function() {
+        $(".wizard-inner [role=presentation]").removeClass('active');
+        $(this).parent().addClass('active')
+    });
+    $("[type=button][href^='#step']").on('click',function(e){
+        e.preventDefault()
+        var attr_href=$(this).attr('href')
+        var selecter=`.wizard-inner [href='${attr_href}']`;
 
+        $(selecter).trigger('click')
+    })
 
 
 });

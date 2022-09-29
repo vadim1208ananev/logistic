@@ -564,6 +564,7 @@
                                         <button type="button"  href="#step2" data-toggle="tab" aria-controls="step2" id="step1_btn" role="tab"
                                     aria-expanded="false" class="default-btn next-step" >Continue to next
                                             step</button>
+
                                     </li>
                                 </ul>
                             </div>

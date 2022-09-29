@@ -4,4 +4,4 @@
 
   <!-- Custom styles for this template-->
   <link href="{{ asset('public/panel/css/sb-admin-2.min.css') }}" rel="stylesheet">
-  <script src="{{ asset('public/panel/vendor/bootstrap/js/bootstrap-datepicker.mine23c.js.download') }}"></script>
+<!--  <script src="{{ asset('public/panel/vendor/bootstrap/js/bootstrap-datepicker.mine23c.js.download') }}"></script>-->
