@@ -559,11 +559,15 @@
                                     </div>
 
                                 </div>
+
                                 <ul class="list-inline pull-right">
                                     <li>
                                         <button type="button"  href="#step2" data-toggle="tab" aria-controls="step2" id="step1_btn" role="tab"
                                     aria-expanded="false" class="default-btn next-step" >Continue to next
                                             step</button>
+                                      <!--  <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab"
+                                           aria-expanded="false"><span class="round-tab">to2</span> <i>Description</i></a>-->
+
 
                                     </li>
                                 </ul>

@@ -11815,12 +11815,14 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(".wizard-inner [role=presentation] [role=tab]").on('click', function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(".wizard-inner [role=presentation]").removeClass('active');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("[type=button][href^='#step']").removeClass('active');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().addClass('active');
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("[type=button][href^='#step']").on('click', function (e) {
     e.preventDefault();
     var attr_href = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('href');
     var selecter = ".wizard-inner [href='".concat(attr_href, "']");
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".wizard-inner [role=presentation] [role=tab]").removeClass('active');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(selecter).trigger('click');
   });
 });
