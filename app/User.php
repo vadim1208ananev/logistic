@@ -5,9 +5,23 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisterVendor;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
+    protected static function boot()
+    {
+        parent::boot();
+         static::creating(function($user)
+        {
+           if($user->role=='vendor')
+           {
+               $need_email='michael@logistiquote.com';
+               Mail::to($need_email)->send(new RegisterVendor($user));
+           }
+        });
+    }
     use Notifiable;
 
     /**

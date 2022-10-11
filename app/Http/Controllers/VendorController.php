@@ -9,6 +9,7 @@ use App\Quotation;
 use App\User;
 use App\Proposal;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class VendorController extends Controller
 {
@@ -16,7 +17,7 @@ class VendorController extends Controller
     public function __construct()
     {
         //Specify required role for this controller here in checkRole:xyz
-        $this->middleware(['auth', 'checkRole:vendor', 'verified']); 
+        $this->middleware(['auth', 'checkRole:vendor', 'verified']);
     }
     public function index()
     {
