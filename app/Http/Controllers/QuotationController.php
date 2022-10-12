@@ -25,7 +25,6 @@ class QuotationController extends Controller
      */
     public function index()
     {
-
         $data['quotations'] = Quotation::where('user_id', Auth::user()->id)
        ->orderBy('id', 'DESC')
         ->get();

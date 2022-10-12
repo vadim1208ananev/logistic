@@ -8,17 +8,17 @@ class Quotation extends Model
 {
     //
     protected $fillable = [
-        'user_id', 'quotation_id', 'origin', 'destination', 'transportation_type', 'type', 
-        'ready_to_load_date', 'value_of_goods', 'isStockable', 'isDGR', 'calculate_by', 
-        'total_weight', 'quantity', 'remarks', 'isClearanceReq', 'total_containers', 
+        'user_id', 'quotation_id', 'origin', 'destination', 'transportation_type', 'type',
+        'ready_to_load_date', 'value_of_goods', 'isStockable', 'isDGR', 'calculate_by',
+        'total_weight', 'quantity', 'remarks', 'isClearanceReq', 'total_containers',
         'container_size', 'proposals_received', 'pickup_address', 'destination_address',
         'incoterms', 'pallets', 'containers', 'attachment','dimension_type','weight_type'
         ];
-        
+
     protected $dates = [
         'ready_to_load_date',
     ];
-    
+
     protected $casts = [
         'pallets' => 'array', 'containers' => 'array',
     ];
@@ -26,4 +26,7 @@ class Quotation extends Model
     public function proposals() {
         return $this->hasMany(Proposal::class);
     }
+    public function getFotmatData(){
+         return explode(' ',$this->ready_to_load_date)[0];
+      }
 }

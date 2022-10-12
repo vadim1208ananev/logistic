@@ -100,7 +100,7 @@
                                 <th>Status</th>
                                 <th>Proposals Received</th>
                                 <th width="10%">Transportation</th>
-                                <th width="13%">Ready to load</th>
+                                <th width="33%">Ready to load</th>
                                 <th>Worth</th>
                                 <th width="10%">Gross Weight</th>
                                  <th width="10%">Weight type</th>
@@ -133,8 +133,9 @@
                                 <td>{{ $quotation->transportation_type }} ({{ $quotation->type }})</td>
                                 <td>
                                     <?php
-                                $date = Carbon\Carbon::parse($quotation->ready_to_load_date);
-                                echo $date->format('M d Y');
+                                    echo $quotation->getFotmatData();
+                              /*  $date = Carbon\Carbon::parse($quotation->ready_to_load_date);
+                                echo $date->format('M d Y');*/
                             ?>
                                 </td>
                                 <td>{{ $quotation->value_of_goods }} $</td>

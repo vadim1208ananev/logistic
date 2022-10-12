@@ -1,7 +1,7 @@
 @extends('panels.layouts.master')
 @section('content')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-  
+
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -41,9 +41,9 @@
                         @foreach($quotations as $quotation)
                         <tr>
                             <td> <b>{{ $quotation->id }} </b> </td>
-                            <td> 
-                                <span class="text-success">{{ $quotation->origin }}</span>  
-                                to 
+                            <td>
+                                <span class="text-success">{{ $quotation->origin }}</span>
+                                to
                                 <span class="text-danger">{{ $quotation->destination }}</span>
                             </td>
                             <td>
@@ -63,8 +63,9 @@
                             <td>{{ $quotation->transportation_type }} ({{ $quotation->type }})</td>
                             <td>
                                 <?php
-                                    $date = Carbon\Carbon::parse($quotation->ready_to_load_date);
-                                    echo $date->format('M d Y');
+                                echo $quotation->getFotmatData();
+                                  //  $date = Carbon\Carbon::parse($quotation->ready_to_load_date);
+                                  //  echo $date->format('M d Y');
                                 ?>
                             </td>
                             <td>{{ $quotation->value_of_goods }} $</td>
@@ -81,7 +82,7 @@
                                     <a class="dropdown-item" href="{{ route('PurposleQutation.all_purposles', $quotation->id) }}">See all Purposals</a>
                                      @endif
                                     <!--<a class="dropdown-item" href="{{ route('quotation.edit', $quotation->id) }}">Edit</a>-->
-                                    
+
                                     @if( $quotation->status != 'withdrawn')
                                         <form action="{{ route('quotation.destroy', $quotation->id ) }}" method="POST">
                                             @csrf
@@ -117,7 +118,7 @@
 @section('bottom_scripts')
 <script>
     $(document).ready( function () {
-      
+
         $('#quotations_table').DataTable();
     });
 </script>
