@@ -15,8 +15,8 @@ class ProposalController extends Controller
     public function __construct()
     {
         //Specify required role for this controller here in checkRole:xyz
-        // $this->middleware(['auth', 'checkRole:user']); 
-        $this->middleware(['auth', 'verified']); 
+        // $this->middleware(['auth', 'checkRole:user']);
+        $this->middleware(['auth', 'verified']);
     }
     /**
      * Display a listing of the resource.
@@ -25,10 +25,10 @@ class ProposalController extends Controller
      */
     public function index()
     {
-     
+
         $data['proposals'] = Proposal::with('user')->where('partner_id', Auth::user()->id)
         ->get();
-       
+
         $data['page_name'] = 'proposals';
         $data['page_title'] = 'View proposals | LogistiQuote';
         return view('panels.proposal.index', $data);
@@ -36,9 +36,9 @@ class ProposalController extends Controller
     public function view_all()
     {
         $data['proposals'] = Proposal::with('user')->get();
-        
+
         $data['page_name'] = 'proposals';
-        
+
         $data['page_title'] = 'View proposals | LogistiQuote';
         return view('panels.proposal.index', $data);
     }
@@ -49,9 +49,10 @@ class ProposalController extends Controller
      */
     public function proposals_received()
     {
-      
+
         $data['proposals'] = Proposal::where('user_id', Auth::user()->id)
         ->get();
+
         $data['page_name'] = 'proposals';
         $data['page_title'] = 'View proposals | LogistiQuote';
         return view('panels.proposal.index', $data);
@@ -74,12 +75,12 @@ class ProposalController extends Controller
      */
     public function make_proposal($id)
     {
-      
+
         $data['quotation'] = Quotation::findOrFail($id);
        $data['incoterms']=$data['quotation']->incoterms;
         $data['page_name'] = 'make_proposal';
         $data['page_title'] = 'Make Proposal | LogistiQuote';
-     
+
         return view('panels.proposal.create', $data);
     }
 
@@ -101,48 +102,48 @@ class ProposalController extends Controller
             'freight_charges' => ['required', 'numeric', 'min:0', 'max:1000000000'],
             'destination_local_charges' => ['required', 'numeric', 'min:0', 'max:1000000000'],
             'customs_clearance_charges' => ['required', 'numeric', 'min:0', 'max:1000000000'],
-         
+
             'departure_date' => ['required', 'string', 'min:3', 'max:255'],
-    
+
         ]);
-      
+
         break;
     case 'FOB':
         $validatedData = $request->validate([
             'quotation_id' => ['required'],
-      
+
             'freight_charges' => ['required', 'numeric', 'min:0', 'max:1000000000'],
             'destination_local_charges' => ['required', 'numeric', 'min:0', 'max:1000000000'],
             'customs_clearance_charges' => ['required', 'numeric', 'min:0', 'max:1000000000'],
-         
+
             'departure_date' => ['required', 'string', 'min:3', 'max:255'],
-    
+
         ]);
-      
+
         break;
     case 'CIP/CIF':
         $validatedData = $request->validate([
             'quotation_id' => ['required'],
-          
+
             'destination_local_charges' => ['required', 'numeric', 'min:0', 'max:1000000000'],
             'customs_clearance_charges' => ['required', 'numeric', 'min:0', 'max:1000000000'],
-         
+
             'departure_date' => ['required', 'string', 'min:3', 'max:255'],
-    
+
         ]);
-       
+
         break;
       case 'DAP':
         $validatedData = $request->validate([
             'quotation_id' => ['required'],
-          
+
             'destination_local_charges' => ['required', 'numeric', 'min:0', 'max:1000000000'],
             'customs_clearance_charges' => ['required', 'numeric', 'min:0', 'max:1000000000'],
-         
+
             'departure_date' => ['required', 'string', 'min:3', 'max:255'],
-    
+
         ]);
-       
+
         break;
     default:
          $validatedData = $request->validate([
@@ -157,17 +158,17 @@ class ProposalController extends Controller
             // 'remarks' => ['required', 'string', 'min:2', 'max:255'],
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-       
+
 }
-           
-           
-           
-      
-         
+
+
+
+
+
        //print_r($request->valid_till);
 //  echo $dat=DateTime::createFromFormat('d-m-Y',$request->valid_till);
     //   exit();
-       
+
         if(intval($request->valid_till) > 2037)
         {
             return redirect()->back()->withErrors(['Date year can not be greater than year-2037!']);
@@ -226,7 +227,7 @@ class ProposalController extends Controller
      */
     public function show($id)
     {
-       
+
         $data['proposal'] = Proposal::findOrFail($id);
         $data['page_name'] = 'view_proposal';
         $data['page_title'] = 'View Proposal | LogistiQuote';
@@ -256,7 +257,7 @@ class ProposalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
+    {
         // dd($request->all());
         $validatedData = $request->validate([
             'quotation_id' => ['required'],
@@ -300,7 +301,7 @@ class ProposalController extends Controller
 
         // Send proposal email to user
         send_proposal_mail($proposal->user_id, $request->quotation_id);
-        
+
         return redirect(route('proposal.index'));
     }
 
@@ -317,7 +318,7 @@ class ProposalController extends Controller
         $proposal->save();
         return redirect(route('proposal.index'));
     }
-    
+
     public function accept_proposal($id)
     {
         $proposal = Proposal::findOrFail($id);
@@ -350,7 +351,7 @@ class ProposalController extends Controller
         $data['page_name'] = 'Active_proposal';
         $data['page_title'] = 'Active Proposal | LogistiQuote';
         return view('panels.proposal.active_purposels',$data);
-        
+
     }
 
 
@@ -365,7 +366,7 @@ class ProposalController extends Controller
         $data['page_name'] = 'Active_proposal';
         $data['page_title'] = 'Active Proposal | LogistiQuote';
         return view('panels.proposal.accept_purposels',$data);
-        
+
     }
     public function made(){
         $id=Auth::user()->id;
@@ -373,7 +374,7 @@ class ProposalController extends Controller
         $data['page_name'] = 'Active_proposal';
         $data['page_title'] = 'Active Proposal | LogistiQuote';
         return view('panels.proposal.made_purposels',$data);
-        
+
     }
-    
+
 }

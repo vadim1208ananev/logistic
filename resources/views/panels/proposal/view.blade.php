@@ -56,15 +56,7 @@
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="col-md-4 mb-3">
-                            <label for="validationServer01">The proposal is valid till</label>
-                            <?php $date = Carbon\Carbon::parse($proposal->valid_till); ?>
-                            <input type="text" class="form-control" name="date" value="{{ $date->format('M d Y') }}"
-                                readonly />
 
-                        </div>
-                    </div>
 
                     <h5> <b> Forwarder Details </b> </h5>
                     <div class="form-row">
@@ -74,14 +66,21 @@
                                 id="validationServer03" placeholder="City" value="{{ $proposal->vendor->name }}"
                                 readonly name="local_charges" required>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-4 mb-3">
+                            <label for="validationServer01">The proposal is valid till</label>
+                            <?php $date = Carbon\Carbon::parse($proposal->valid_till); ?>
+                            <input type="text" class="form-control" name="date" value="{{ $date->format('M d Y') }}"
+                                   readonly />
+
+                        </div>
+                     <!--   <div class="col-md-6 mb-3">
                             <label for=""> Forwarder Phone: </label>
                             <input type="text" class="form-control @error('origin_city') is-invalid @enderror"
                                 id="validationServer03" placeholder="City" value="{{ $proposal->vendor->phone }}"
                                 readonly name="freight_charges" required>
-                        </div>
+                        </div>-->
                     </div>
-                    <div class="form-row">
+                   <!-- <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for=""> Forwarder Email: </label>
                             <input type="text" class="form-control @error('origin_city') is-invalid @enderror"
@@ -95,7 +94,7 @@
                                 value="{{ $proposal->vendor->additional_email }}" readonly name="freight_charges"
                                 required>
                         </div>
-                    </div>
+                    </div>-->
 
                     <hr>
                     <h5 class="mt-4"> <b> Other Info </b> </h5>
