@@ -42,7 +42,7 @@ class VendorController extends Controller
         //Validate data
         $this->validate($request,[
             'name' => 'required|string|min:3|max:191',
-            // 'email' => 'required|string|email|max:191',
+             'image' => 'image',
             'phone' => 'required|string|min:9|max:20',
             'password' => 'nullable|min:6|max:191',
         ]);
@@ -55,15 +55,19 @@ class VendorController extends Controller
         else{
             $request->password = $user->password;
         }
-        $image = $request->file('image');
-        $name_image = time().'.'.$image->getClientOriginalExtension();
-        $destinationPath = public_path('/images');
-        $image->move($destinationPath, $name_image);
+
+       if($request->file('image')) {
+           $image = $request->file('image');
+           $name_image = time() . '.' . $image->getClientOriginalExtension();
+           $destinationPath = public_path('/images');
+           $image->move($destinationPath, $name_image);
+           $user->image = $name_image;
+       }
         //Update record in User table
         $user->name = $request->name;
         $user->password = $request->password;
         $user->phone = $request->phone;
-        $user->image = $name_image;
+
         $user->save();
 
         return redirect()->back();

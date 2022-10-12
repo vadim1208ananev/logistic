@@ -17,7 +17,7 @@ class UserController extends Controller
     public function __construct()
     {
         //Specify required role for this controller here in checkRole:xyz
-        $this->middleware(['auth', 'checkRole:user', 'verified']); 
+        $this->middleware(['auth', 'checkRole:user', 'verified']);
     }
     public function index()
     {
@@ -43,6 +43,7 @@ class UserController extends Controller
         //Validate data
         $this->validate($request,[
             'name' => 'required|string|min:3|max:191',
+            'image' => 'image',
             // 'email' => 'required|string|email|max:191',
             'phone' => 'required|string|min:9|max:20',
             'password' => 'nullable|min:6|max:191',
@@ -56,16 +57,19 @@ class UserController extends Controller
         else{
             $request->password = $user->password;
         }
-         $image = $request->file('image');
-        $name_image = time().'.'.$image->getClientOriginalExtension();
-        $destinationPath = public_path('/images');
-        $image->move($destinationPath, $name_image);
-        
+        if($request->file('image')) {
+            $image = $request->file('image');
+            $name_image = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $user->image = $name_image;
+            $image->move($destinationPath, $name_image);
+        }
+
         //Update record in User table
         $user->name = $request->name;
         $user->password = $request->password;
         $user->phone = $request->phone;
-        $user->image = $name_image;
+
         $user->save();
 
         return redirect()->back();
