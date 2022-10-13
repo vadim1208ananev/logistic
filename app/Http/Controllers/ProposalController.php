@@ -95,7 +95,7 @@ class ProposalController extends Controller
           $quotation = Quotation::findOrFail($request->quotation_id);
            $incoterms=$quotation->incoterms;
           switch ($incoterms) {
-    case 'EXW':
+        case 'EXW':
          $validatedData = $request->validate([
             'quotation_id' => ['required'],
             'local_charges' => ['required', 'numeric', 'min:0', 'max:1000000000'],
@@ -229,6 +229,7 @@ class ProposalController extends Controller
     {
 
         $data['proposal'] = Proposal::findOrFail($id);
+      //  dd($data['proposal']);
         $data['page_name'] = 'view_proposal';
         $data['page_title'] = 'View Proposal | LogistiQuote';
         return view('panels.proposal.view', $data);
@@ -321,11 +322,15 @@ class ProposalController extends Controller
 
     public function accept_proposal($id)
     {
+        //podtvergdenie
+        $now=Carbon::now()->format('Y-m-d');
         $proposal = Proposal::findOrFail($id);
         $proposal->status = 'completed';
         $proposal->if_accepted = 1;
+
         $quotation = Quotation::findOrFail($proposal->quotation_id);
         $quotation->status = 'completed';
+        $quotation->data_compleate=$now;
         $proposal->save();
         $quotation->save();
 
