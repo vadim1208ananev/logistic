@@ -357,23 +357,14 @@ class QuotationController extends Controller
     public function view_all()
     {
 ///quot list for vendor
-$subday=now()->subDays(30)->format('Y-m-d');
-//dd($subday);
-       // $now=Carbon::now()->addDays(30)->format('Y-m-d');
-    //   dd($now);
-    //    $q=Quotation::find(166);
-     //   dd($q->data_compleate);
-  //    $nd=  date('Y-m-d', strtotime($q->data_compleate. ' + 30 days'));
-    //  dd($nd);
-     //  $data['quotations'] = Quotation::where('status', '=', 'active')->latest()->get();
-        $data['quotations'] = Quotation::where(function ($query) {
+     $subday=now()->subDays(30)->format('Y-m-d');
+        $data['quotations'] = Quotation::where(function ($query) use($subday) {
             $query->where('status', '=', 'active')
-                ->orWhere(function ($query) {
+                ->orWhere(function ($query) use ($subday) {
                     $query->where('status', '=', 'completed')
-                        ->where('data_compleate', '=', '2022-10-13');
+                        ->where('data_compleate', '>',$subday);
                 });
         })->latest()->get();
-
         $data['page_name'] = 'quotations';
         $data['page_title'] = 'View quotations | LogistiQuote';
         return view('panels.quotation.search_quotations', $data);
