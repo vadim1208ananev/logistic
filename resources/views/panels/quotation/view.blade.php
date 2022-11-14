@@ -221,6 +221,11 @@
                                 <input type="number" class="form-control @error('total_weight') is-invalid @enderror"
                                     value="{{ $quotation->total_weight }}" readonly name="total_weight" required>
                             </div>
+                            <div class="col-md-3 mb-3">
+                                 <label for="">CBM</label>
+                                <input type="text" class="form-control @error('total_weight') is-invalid @enderror"
+                                    value="{{ $quotation->cbm }}" readonly name="cbm" required>
+                            </div>
                         </div>
                     </div>
                     @elseif($quotation->calculate_by == 'units')

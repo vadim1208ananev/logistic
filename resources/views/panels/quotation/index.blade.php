@@ -34,6 +34,7 @@
                             <th>Worth</th>
                             <th width="10%">Gross Weight</th>
                              <th width="10%">Weight value</th>
+                             <th width="10%">CBM</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -71,6 +72,7 @@
                             <td>{{ $quotation->value_of_goods }} $</td>
                             <td>{{ $quotation->total_weight }}</td>
                               <td>{{ $quotation->weight_type }}</td>
+                              <td>{{ $quotation->cbm }}</td>
                             <td>
                             <div class="dropdown">
                                 <button type="button" class="btn btn-success fa-2x" data-toggle="dropdown">

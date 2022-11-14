@@ -11836,7 +11836,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\logist.com\public_html\resources\js\js\picker.js */"./resources/js/js/picker.js");
+module.exports = __webpack_require__(/*! C:\OSPanel\domains\logist.loc\resources\js\js\picker.js */"./resources/js/js/picker.js");
 
 
 /***/ })

@@ -12,7 +12,7 @@ class Quotation extends Model
         'ready_to_load_date', 'value_of_goods', 'isStockable', 'isDGR', 'calculate_by',
         'total_weight', 'quantity', 'remarks', 'isClearanceReq', 'total_containers',
         'container_size', 'proposals_received', 'pickup_address', 'destination_address',
-        'incoterms', 'pallets', 'containers', 'attachment','dimension_type','weight_type','data_compleate'
+        'incoterms', 'pallets', 'containers', 'attachment','dimension_type','weight_type','data_compleate','cbm'
         ];
 
     protected $dates = [

@@ -356,6 +356,7 @@ class QuotationController extends Controller
      */
     public function view_all()
     {
+  
 ///quot list for vendor
      $subday=now()->subDays(30)->format('Y-m-d');
         $data['quotations'] = Quotation::where(function ($query) use($subday) {
@@ -472,9 +473,11 @@ class QuotationController extends Controller
 
         $ready_to_load_date = Carbon::createFromFormat('d-m-Y', $fileContents->ready_to_load_date );
         $quotation->ready_to_load_date = $ready_to_load_date->addMinutes(1);
-
+         
+       
         $quotation->value_of_goods = $fileContents->value_of_goods;
         $quotation->description_of_goods = $fileContents->description_of_goods;
+        
         $quotation->isStockable = isset($fileContents->isStockable) ? $fileContents->isStockable : 'No';
         $quotation->isDGR = isset($fileContents->isDGR) ? $fileContents->isDGR : 'No';
         $quotation->calculate_by = $fileContents->calculate_by;
@@ -529,6 +532,7 @@ class QuotationController extends Controller
         {
             $quotation->quantity = $fileContents->quantity;
             $quotation->total_weight = $fileContents->total_weight;
+            $quotation->cbm = $fileContents->cbm;
         }
         $quotation->save();
 

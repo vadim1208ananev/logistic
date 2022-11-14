@@ -56,7 +56,7 @@ class SiteController extends Controller
 
     public function get_quote_step1(Request $request)
     {
-       //dd($request->all());
+      // dd($request->all());
         if(explode('-' ,$request->date)[2] > 2037)
         {
             return redirect()->back()->withErrors(['Date year can not be greater than year-2037!']);
@@ -119,6 +119,7 @@ class SiteController extends Controller
     }
     public function form_quote_step2(Request $request)
     {
+       
           if($request->file('attachment'))
         {
             $file_name = rand().'.'.$request->file('attachment')->getClientOriginalExtension();

@@ -11668,8 +11668,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OpenServer\domains\logist.com\public_html\resources\js\js\main.js */"./resources/js/js/main.js");
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\logist.com\public_html\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\OSPanel\domains\logist.loc\resources\js\js\main.js */"./resources/js/js/main.js");
+module.exports = __webpack_require__(/*! C:\OSPanel\domains\logist.loc\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

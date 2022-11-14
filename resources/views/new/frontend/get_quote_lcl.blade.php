@@ -245,6 +245,13 @@
                                     </div>
                                     <div class="accent-btn"><span class="weight_type">Kg</span></div>
                                 </div>
+                                <div class="calculator__shipment-item">
+                                    <div class="input">
+                                        <label for="cbm" class="sr-only">CBM Value</label>
+                                        <input type="number" id="cbm" class="required" title="CBM Value" name="cbm" placeholder="0" autocomplete="off">
+                                    </div>
+                                    <div class="accent-btn"><span class="weight_typeq">CBM</span></div>
+                                </div>
                             </div>
                             <div class="calculator__units hidden" id="units">
                                 <figure class="calculator__units-img">
