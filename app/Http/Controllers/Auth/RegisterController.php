@@ -76,6 +76,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+     
         $user=User::create([
             'name' => $data['f_name']. ' '.$data['l_name'],
             'email' => $data['email'],
@@ -85,6 +86,7 @@ class RegisterController extends Controller
             'company_name' => $data['company_name'],
             'password' => Hash::make($data['password']),
         ]);
+        send_message_about_register($data);
         if($data['role']=="vendor"){
            echo"<script>location.href='https://www.logistiquote.com/stop'</script>";
 
