@@ -1,0 +1,16 @@
+[23-Dec-2022 23:14:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/logistiquote/public_html/config/cache.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/logistiquote/public_html/config/cache.php on line 21
+[23-Dec-2022 23:14:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/logistiquote/public_html/config/cache.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/logistiquote/public_html/config/cache.php on line 21
+[23-Dec-2022 23:14:58 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/logistiquote/public_html/config/cache.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/logistiquote/public_html/config/cache.php on line 21
+[28-Dec-2022 00:37:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/logistiquote/public_html/config/cache.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/logistiquote/public_html/config/cache.php on line 21

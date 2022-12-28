@@ -119,3 +119,18 @@
 [06-Nov-2022 10:39:36 UTC] PHP Fatal error:  Out of memory (allocated 2097152) (tried to allocate 4096 bytes) in /home/logistiquote/public_html/vendor/composer/autoload_static.php on line 4244
 [06-Nov-2022 10:46:16 UTC] PHP Fatal error:  Out of memory (allocated 2097152) (tried to allocate 4096 bytes) in /home/logistiquote/public_html/vendor/composer/autoload_static.php on line 4244
 [06-Nov-2022 11:05:21 UTC] PHP Fatal error:  Out of memory (allocated 2097152) (tried to allocate 4096 bytes) in /home/logistiquote/public_html/vendor/composer/autoload_static.php on line 4244
+[14-Nov-2022 12:34:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function phpinfi() in /home/logistiquote/public_html/infop.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/logistiquote/public_html/infop.php on line 2
+[14-Nov-2022 12:34:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function phpinfi() in /home/logistiquote/public_html/infop.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/logistiquote/public_html/infop.php on line 2
+[21-Nov-2022 00:42:30 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 38079224 bytes) in /home/logistiquote/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php on line 232
+[30-Nov-2022 05:11:50 UTC] PHP Fatal error:  Out of memory (allocated 12582912) (tried to allocate 12288 bytes) in /home/logistiquote/public_html/vendor/laravel/framework/src/Illuminate/Database/Schema/Builder.php on line 140
+[30-Nov-2022 08:01:42 UTC] PHP Fatal error:  Out of memory (allocated 2097152) (tried to allocate 4096 bytes) in /home/logistiquote/public_html/vendor/composer/autoload_static.php on line 4240
+[30-Nov-2022 08:14:15 UTC] PHP Fatal error:  Out of memory (allocated 2097152) (tried to allocate 4096 bytes) in /home/logistiquote/public_html/vendor/composer/autoload_static.php on line 4240
+[01-Dec-2022 13:12:51 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 44783712 bytes) in /home/logistiquote/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php on line 232
+[05-Dec-2022 13:46:30 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 47216488 bytes) in /home/logistiquote/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php on line 232
+[06-Dec-2022 23:34:24 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 47832488 bytes) in /home/logistiquote/public_html/vendor/laravel/framework/src/Illuminate/View/Compilers/BladeCompiler.php on line 232
